@@ -1,0 +1,13 @@
+flowchart LR
+  B24[24 V Battery] --> FMAIN[Main Fuse] --> ESTOP[E-stop / Contactor] --> PDB[Fused Distribution]
+  PDB --> FL[FL Motor Controller] --> MFL[FL Wheel Motor]
+  PDB --> FR[FR Motor Controller] --> MFR[FR Wheel Motor]
+  PDB --> RL[RL Motor Controller] --> MRL[RL Wheel Motor]
+  PDB --> RR[RR Motor Controller] --> MRR[RR Wheel Motor]
+  PDB --> EX[Conveyor Driver] --> MX[Excavator Motor]
+  PDB --> ACT[Actuator Drivers] --> LA[Linear Actuators]
+  VM[V-mount Battery] --> CF[Compute Fuse + Protection] --> J[Jetson Orin NX]
+  J <-->|UART 115200| E[ESP32 / micro-ROS]
+  E --> FL & FR & RL & RR & EX & ACT
+  J --> L[2D LiDAR]
+  J --> C[RGB Camera / OpenCV]

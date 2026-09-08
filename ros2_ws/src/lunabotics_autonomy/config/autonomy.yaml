@@ -1,0 +1,19 @@
+/**:
+  ros__parameters:
+    camera_topic: /camera/image_raw
+    scan_topic: /scan
+    cmd_vel_topic: /cmd_vel
+    detector/debug_topic: /vision/goal_posts/debug
+    detector/target_topic: /vision/goal_posts/target
+    detector/min_area_px: 350.0
+    detector/min_aspect_ratio: 2.0
+    detector/max_aspect_ratio: 12.0
+    detector/min_post_count_for_dump: 4
+    detector/hsv_low: [0, 0, 130]
+    detector/hsv_high: [180, 90, 255]
+    lidar/stop_distance_m: 0.65
+    lidar/slow_distance_m: 1.25
+    mission/max_linear_mps: 0.20
+    mission/max_angular_rps: 0.45
+    mission/excavate_seconds: 12.0
+    mission/dump_seconds: 5.0

@@ -1,0 +1,5 @@
+Uploaded KiCad schematic review highlights:
+- Title found: Lunabotics_Lunar_Rover_Electrical_Schematic_01.
+- Mixed motor-driver naming is present: DRV8871 symbol definitions with values that mention L298N and ZS-X11H.
+- Components/labels found include ESP32-WROOM-32, front/rear wheel drivers, excavator driver, linear-actuator driver, fuses, E-stop, buck converter and battery symbols.
+- Before fabrication, reconcile every driver symbol with the actual hardware, voltage, motor type, current capability and connector pinout.
