@@ -1,0 +1,36 @@
+joy_teleop:
+  ros__parameters:
+    move:
+      type: topic
+      interface_type: geometry_msgs/msg/Twist
+      topic_name: /cmd_vel
+      deadman_buttons: [5] # R1/RB Button must be held to move
+      axis_mappings:
+        # --- DRIVE WHEELS ---
+        linear-x:
+          axis: 1      # Left Stick Up/Down
+          scale: 1.0
+          offset: 0.0
+        angular-z:
+          axis: 3      # Right Stick Left/Right (Steering)
+          scale: 1.0
+          offset: 0.0
+
+        # --- BUCKET LIFT (D-Pad Left/Right) ---
+        linear-y:
+          axis: 6      # Horizontal D-Pad Axis
+          scale: 1.0
+          offset: 0.0
+
+        # --- EXCAVATOR LIFT (D-Pad Up/Down) ---
+        linear-z:
+          axis: 7      # Vertical D-Pad Axis
+          scale: 1.0
+          offset: 0.0
+
+        # --- CONVEYOR MOTOR (Right Stick Up) ---
+        # Updated to angular-y to match  new ESP32 firmware logic
+        angular-y:
+          axis: 4      # Right Stick Up/Down Axis
+          scale: 1.0
+          offset: 0.0

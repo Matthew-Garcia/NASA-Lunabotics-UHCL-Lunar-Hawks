@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+build/
+install/
+log/
+.venv/
+.env
+secrets.py
+sdkconfig.old
+*.kicad_prl
+*-backups/
+.DS_Store

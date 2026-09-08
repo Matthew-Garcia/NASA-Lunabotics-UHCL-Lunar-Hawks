@@ -1,0 +1,15 @@
+name: Host-only checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  dry-run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: MicroPython-compatible logic on CPython
+        run: python3 firmware/micropython/test.py
+      - name: Host protocol tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Syntax checks
+        run: python3 -m compileall -q firmware/micropython ros2_ws/src tests
