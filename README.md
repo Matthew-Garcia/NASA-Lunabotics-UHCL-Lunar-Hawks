@@ -1,5 +1,3 @@
-> **New simulation review branch:** [Full rover CAD, Gazebo/RViz launch and KiCad Rev C](docs/SIMULATION_REVIEW.md). Reference-derived geometry; runtime and electrical review remain pending.
-
 <p align="center"><img src="media/UHCL_Lunabotics_Logo.jfif" width="180" alt="UHCL Lunar Hawks team logo"></p>
 
 # NASA Lunabotics · UHCL Lunar Hawks
@@ -292,7 +290,11 @@ It represents:
 - LiDAR
 - RGB camera
 
-An integrated Gazebo spawn/bringup launch file is still planned.
+<p align="center">
+  <img src="media/Lunabotics_Gazebo.png" width="900" alt="UHCL Lunar Hawks rover in Gazebo">
+</p>
+
+*Lunar Hawks rover simulation with grouser wheels, a scoop conveyor excavator, and an actuator-driven disposal bucket. Full autonomous excavation and disposal remain under development.*
 
 ---
 
@@ -356,13 +358,7 @@ The repository includes both preserved project CAD and new development geometry.
 cad/
 ```
 
-Additional autonomy-development CAD is located at:
-
-```text
-cad/autonomy_rover/
-```
-
-Included models:
+All mechanical assets are stored directly in `cad/` without nested CAD folders. Included models include:
 
 ```text
 goal_post.scad
@@ -487,8 +483,7 @@ Before powering physical motors or actuators:
 | `ros2_ws/src/lunabotics_description/` | Rover URDF/Xacro description |
 | `simulation/worlds/` | Gazebo Lunabotics arena |
 | `hardware/rover_control_pcb/` | Proposed rover-control/interface PCB |
-| `cad/` | Mechanical models and original STL files |
-| `cad/autonomy_rover/` | New rover, wheel, and goal-post development CAD |
+| `cad/` | Flat collection of preserved and development CAD, printable STLs, sources, and previews |
 | `docs/architecture/` | Interfaces, command semantics, and system architecture |
 | `docs/electrical/` | Electrical safety and architecture documentation |
 | `docs/electrical/rev_b/` | Rev-B electrical recommendations and schematic review |
@@ -536,10 +531,10 @@ Before powering physical motors or actuators:
 # Research
 
 **Matthew Garcia**  
-Repository maintainer · Robotics systems integration · Embedded systems · ROS 2 / autonomy contributor
+Repository maintainer · Robotics systems integration · Embedded systems · ROS 2 / autonomy contributor · Co-Author
 
 **Dr. Luong Nguyen, Ph.D.**  
-Research adviser · Co-author
+Research adviser · Lead-author
 
 Credit also belongs to the **University of Houston–Clear Lake Lunar Hawks team** and the students who designed, built, tested, and improved the rover platform.
 
@@ -551,7 +546,7 @@ The project has been accepted for presentation at **ISMCR 2026 — International
 
 Research documentation and publication status are maintained under:
 
-[Read the author manuscript (Word)](docs/publication/manuscript/Nguyen_Garcia_ISMCR2026_Final_Revision.docx) · [Publication status](docs/publication/README.md)
+[docs/publication/](docs/publication/README.md)
 
 ---
 
@@ -592,3 +587,4 @@ The original MIT license is retained.
 See [NOTICE](NOTICE.md) for source revision, provenance, and rights information.
 
 Some newer example code and engineering-development artifacts were created with AI-assisted development and should be independently reviewed, tested, and validated before use on physical hardware.
+

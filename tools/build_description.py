@@ -88,4 +88,8 @@ clip=sub(cam,'clip');txt(clip,'near',.05);txt(clip,'far',30)
 pl=sub(s,'plugin',name='camera',filename='libgazebo_ros_camera.so');ros=sub(pl,'ros');txt(ros,'namespace','/');txt(pl,'camera_name','camera');txt(pl,'frame_name','camera_optical_frame')
 E.indent(r)
 (P/'urdf/lunar_hawks.urdf').write_text(E.tostring(r,encoding='unicode'))
-for f in (ROOT/'cad/full_rover').glob('*.stl'):shutil.copy(f,P/'meshes'/f.name)
+for name in ('actuator_body.stl','actuator_rod.stl','bucket.stl','chassis.stl',
+             'conveyor.stl','esp32_base.stl','esp32_lid.stl','gate.stl',
+             'jetson_base.stl','jetson_lid.stl','latch.stl','scoop.stl',
+             'wheel.stl','wheel_assembled.stl','wheel_cover.stl'):
+    shutil.copy(ROOT/'cad'/name,P/'meshes'/name)

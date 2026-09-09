@@ -33,6 +33,6 @@ class RepositoryTests(unittest.TestCase):
         self.assertIn('/lunabotics/cmd_vel_preview', content)
         self.assertNotIn('/home/uhcl_lunabotics', content)
 
-    def test_three_micropython_files(self):
+    def test_micropython_programs_and_host_test_module(self):
         names = {p.name for p in (ROOT / 'firmware/micropython').glob('*.py')}
-        self.assertEqual(names, {'boot.py', 'test.py', 'main.py'})
+        self.assertEqual(names, {'boot.py', 'test.py', 'main.py', 'dry_run.py'})

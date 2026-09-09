@@ -7,7 +7,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location(
-    "ws", ROOT / "firmware/micropython/main.py")
+    "ws", ROOT / "firmware/micropython/dry_run.py")
 ws = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(ws)
 
