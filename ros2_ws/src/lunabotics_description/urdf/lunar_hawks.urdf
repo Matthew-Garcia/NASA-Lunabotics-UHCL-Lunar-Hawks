@@ -791,7 +791,7 @@
   <joint name="lidar_mount" type="fixed">
     <parent link="base_link" />
     <child link="lidar_link" />
-    <origin xyz=".15 0 .62" rpy="0 0 0" />
+    <origin xyz="0 0 .85" rpy="0 0 0" />
   </joint>
   <gazebo reference="lidar_mount">
     <preserveFixedJoint>true</preserveFixedJoint>

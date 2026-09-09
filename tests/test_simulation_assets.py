@@ -23,6 +23,8 @@ class SimulationAssets(unittest.TestCase):
         self.assertIsNotNone(root.find("link[@name='rear_door']/collision"))
         self.assertEqual(root.find("joint[@name='rear_door_joint']/origin").attrib['xyz'],'0 0 .24')
         self.assertEqual(root.find("link[@name='rear_door']/inertial/origin").attrib['xyz'],'0 0 -.12')
+        lidar_z=float(root.find("joint[@name='lidar_mount']/origin").attrib['xyz'].split()[2])
+        self.assertGreaterEqual(lidar_z,.85)
     def test_four_posts_and_material(self):
         r=ET.parse(ROOT/'ros2_ws/src/lunabotics_description/worlds/arena.world').getroot()
         names=[m.attrib['name'] for m in r.findall('world/model')]

@@ -71,7 +71,9 @@ for side,y in [('left',.29),('right',-.29)]:
  joint('excavator_rod_'+side+'_joint','excavator_actuator_'+side,'excavator_rod_'+side,'0 0 .15',typ='prismatic',axis='0 0 1',limits=(0,.15))
 # Sensor housings are visual-only in simulation. Collision geometry on fixed
 # sensor links can be returned by Gazebo's ray sensor as a false obstacle.
-link('lidar_link',m=.15);joint('lidar_mount','base_link','lidar_link','.15 0 .62')
+# Keep the horizontal ray plane above the reconstructed conveyor (about 0.76 m
+# at its stowed pose), otherwise Gazebo reports the rover's own mechanism.
+link('lidar_link',m=.15);joint('lidar_mount','base_link','lidar_link','0 0 .85')
 link('camera_link',m=.1);joint('camera_mount','base_link','camera_link','.36 0 .42')
 sub(r,'link',name='camera_optical_frame');joint('camera_optical','camera_link','camera_optical_frame',rpy='-1.57079632679 0 -1.57079632679')
 gz=sub(r,'gazebo'); sub(gz,'plugin',name='mechanisms',filename='liblunar_mechanisms.so'); d=sub(gz,'plugin',name='drive',filename='libgazebo_ros_diff_drive.so')
