@@ -51,7 +51,8 @@ class LunarMechanisms : public ModelPlugin {
    angle+=std::clamp((tip?1.0:0.)-angle,-dt*.15,dt*.15);
    if(angle<.03 && latched)deployment+=std::clamp((deploy?0.:-.25)-deployment,-dt*.05,dt*.05);
   }
-  if(b)b->SetPosition(0,angle);
+  // Preserve descendant velocities so the passive door can swing under gravity.
+  if(b)b->SetPosition(0,angle,true);
   auto lift=model->GetJoint("excavator_deploy_joint");if(lift)lift->SetPosition(0,deployment);
   bool run=active && excavate && now-exc_time<.5 && deployment>-.01 && angle<.03 && latched;
   for(auto side:{"left","right"}){auto a=model->GetJoint(std::string("actuator_rod_")+side+"_joint");if(a)a->SetPosition(0,angle*.2);}
