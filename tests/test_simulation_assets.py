@@ -18,9 +18,11 @@ class SimulationAssets(unittest.TestCase):
             self.assertEqual(n,'base_link')
         for m in root.findall('.//mesh'):
             self.assertTrue((p/m.attrib['filename'].split('lunabotics_description/')[1]).is_file())
-        for n in ['bucket_joint','ramp_joint','actuator_rod_left_joint','actuator_rod_right_joint']:
+        for n in ['bucket_joint','rear_door_joint','excavator_deploy_joint','actuator_rod_left_joint','actuator_rod_right_joint','excavator_rod_left_joint','excavator_rod_right_joint']:
             self.assertIsNotNone(root.find(f"joint[@name='{n}']/limit"))
-        self.assertIsNotNone(root.find("link[@name='ramp']/collision"))
+        self.assertIsNotNone(root.find("link[@name='rear_door']/collision"))
+        self.assertEqual(root.find("joint[@name='rear_door_joint']/origin").attrib['xyz'],'0 0 .24')
+        self.assertEqual(root.find("link[@name='rear_door']/inertial/origin").attrib['xyz'],'0 0 -.12')
     def test_four_posts_and_material(self):
         r=ET.parse(ROOT/'ros2_ws/src/lunabotics_description/worlds/arena.world').getroot()
         names=[m.attrib['name'] for m in r.findall('world/model')]

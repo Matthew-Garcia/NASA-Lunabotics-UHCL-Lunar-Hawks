@@ -722,5 +722,125 @@
         "LIFT_B"
       ]
     ]
+  ],
+  [
+    "F23",
+    "LATCH BRANCH FUSE - TBD",
+    [
+      [
+        "IN",
+        "MOTOR24"
+      ],
+      [
+        "OUT",
+        "LATCH_24"
+      ]
+    ]
+  ],
+  [
+    "U23",
+    "LATCH SOLENOID DRIVER + CLAMP - TBD",
+    [
+      [
+        "VIN",
+        "LATCH_24"
+      ],
+      [
+        "GND",
+        "MOTOR_GND"
+      ],
+      [
+        "RELEASE_3V3",
+        "LATCH_RELEASE"
+      ],
+      [
+        "OUT",
+        "LATCH_SW"
+      ]
+    ]
+  ],
+  [
+    "Y1",
+    "ELECTRONIC LATCH - COIL VOLTAGE TBD",
+    [
+      [
+        "PLUS",
+        "LATCH_24"
+      ],
+      [
+        "SW_RETURN",
+        "LATCH_SW"
+      ]
+    ]
+  ],
+  [
+    "J23",
+    "DOOR / LATCH FEEDBACK INTERFACE",
+    [
+      [
+        "DOOR_CLOSED",
+        "DOOR_CLOSED"
+      ],
+      [
+        "LATCH_ENGAGED",
+        "LATCH_ENGAGED"
+      ],
+      [
+        "GND",
+        "MOTOR_GND"
+      ]
+    ]
+  ],
+  [
+    "U24",
+    "ESP32 FEEDBACK / LATCH GPIO ASSIGNMENTS TBD",
+    [
+      [
+        "RELEASE",
+        "LATCH_RELEASE"
+      ],
+      [
+        "CLOSED_INPUT",
+        "DOOR_CLOSED"
+      ],
+      [
+        "ENGAGED_INPUT",
+        "LATCH_ENGAGED"
+      ],
+      [
+        "BUCKET_LOWERED",
+        "BUCKET_LOWERED"
+      ],
+      [
+        "EXCAVATOR_STOWED",
+        "EXCAVATOR_STOWED"
+      ],
+      [
+        "EXCAVATOR_DEPLOYED",
+        "EXCAVATOR_DEPLOYED"
+      ]
+    ]
+  ],
+  [
+    "J24",
+    "ACTUATOR ENDPOINT FEEDBACK",
+    [
+      [
+        "BUCKET_LOWERED",
+        "BUCKET_LOWERED"
+      ],
+      [
+        "EXCAVATOR_STOWED",
+        "EXCAVATOR_STOWED"
+      ],
+      [
+        "EXCAVATOR_DEPLOYED",
+        "EXCAVATOR_DEPLOYED"
+      ],
+      [
+        "GND",
+        "MOTOR_GND"
+      ]
+    ]
   ]
 ]

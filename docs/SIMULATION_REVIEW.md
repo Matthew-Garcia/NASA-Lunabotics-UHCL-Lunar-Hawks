@@ -35,13 +35,13 @@ Opt-in experimental mission, in a simulation-only ROS domain without physical dr
 ros2 launch lunabotics_description simulation.launch.py autonomy:=true
 ```
 
-The mission waits for LiDAR and odometry, rotates to scan, advances with excavation enabled, checks a simulated transferred-rock count, searches for four blue posts, approaches them, turns the rear toward the target, then tips and lowers the bucket. Faults latch until node restart. This is a local reactive demonstration, **not Nav2 navigation, SLAM, or general terrain planning**. The gray/tan regolith detector remains a development baseline; excavation-zone selection in this demonstration uses the initial scene arrangement, not validated terrain recognition.
+The mission waits for LiDAR and odometry, rotates to scan, advances with excavation enabled, checks a simulated transferred-rock count, searches for four blue posts, approaches them, turns the rear toward the target, then releases the electronic latch, tips and lowers the bucket, waits for passive door closure and re-latches. Excavator deployment and retraction use a second actuator pair. Faults latch until node restart. This is a local reactive demonstration, **not Nav2 navigation, SLAM, or general terrain planning**. The gray/tan regolith detector remains a development baseline; excavation-zone selection in this demonstration uses the initial scene arrangement, not validated terrain recognition.
 
 ## Simulation scope
 
 - Ground and rocks use terrestrial gravity; the arena is a 10 × 6 m custom test space, not an official competition field.
 - Four blue posts make the HSV baseline testable. Real post appearance and geometry require calibrated detection.
-- Wheel rotation, bucket tipping, ramp opening and illustrative actuator extension have URDF joints.
+- Wheel rotation, bucket tipping, passive top-hinged door opening and illustrative actuator extension have URDF joints.
 - Scoops advance and reset along a prismatic path. This does not model a full closed-loop chain or chain tension.
 - The C++ plugin scripts rock pickup and transfer. Collision geometry permits gravity discharge from the bucket, but discharge success has not been demonstrated.
 - Actuator extension is visually proportional to bucket angle; linkage closure, force and synchronization are not solved.
@@ -71,3 +71,15 @@ The original STL files and uploaded Rev-B schematic remain available for compari
 5. Open the KiCad schematic, run ERC, choose actual modules and finish component-level protective circuits.
 
 References for integration: [Gazebo ROS differential-drive plugin](https://docs.ros.org/en/rolling/p/gazebo_plugins/generated/classgazebo__plugins_1_1GazeboRosDiffDrive.html) and [Gazebo ROS control documentation](https://control.ros.org/humble/doc/gazebo_ros2_control/doc/index.html). Gazebo Classic is retained here for the repository's Humble target.
+
+## Confirmed mechanism correction (Rev C.1)
+
+The rectangular bucket floor becomes the discharge ramp. The rear door is top-hinged, passive and held by an electronic latch. Two actuators tilt the bucket; two additional actuators deploy/retract the excavator. A separate motor drives the scoops.
+
+Sequence: scan, deploy, collect, stop conveyor, retract, locate goal, orient rear, unlatch, tip, lower, wait for door closure, re-latch. State changes wait for simulated position/latch feedback, with timeouts and hold on stale feedback. These are simulation estimates, not real limit-switch readings.
+
+New topics: `/excavator/deploy`, `/bucket/latch_release`, `/mechanisms/hold` (Bool). `/simulation/mechanisms` publishes `[excavator_angle_rad, bucket_angle_rad, door_angle_rad, latch_engaged_0_or_1]`. Fault hold freezes the kinematic bucket/lift, stops scoops and retains latch state; an unlatched door remains passive. Actual latch type, fail state, linkage geometry and actuator synchronization remain unspecified.
+
+The OpenSCAD assembly supports `bucket_tip`, `door_open`, and `excavator_deploy` in degrees. Zero deployment is lowered; -14.3 degrees illustrates travel. Actuator rods are illustrative, not closed-loop linkage solutions. The older preview predates this correction; inspect the regenerated URDF and OpenSCAD for current mechanisms.
+
+24 host tests pass, including seven mission interlock tests using message stubs. Gazebo compilation/runtime and KiCad ERC still require target-environment verification.

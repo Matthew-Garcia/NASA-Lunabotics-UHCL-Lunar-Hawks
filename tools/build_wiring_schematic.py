@@ -30,6 +30,15 @@ for i,(name,ctrl) in enumerate([('CONVEYOR',['CONVEYOR_PWM']),('BUCKET',['BUCKET
  components.append((f'F{20+i}',name+' FUSE - TBD',[('IN','MOTOR24'),('OUT',name+'_24')]))
  components.append((f'U{20+i}',name+' EXTERNAL BRUSHED DRIVER',[('VIN',name+'_24'),('GND','MOTOR_GND')]+[(n,n) for n in ctrl]+[('OUT_A',name+'_A'),('OUT_B',name+'_B')]))
  components.append((f'J{20+i}',name+(' MOTOR' if i==0 else ' ACTUATOR PAIR; SYNC REQUIRED'),[('A',name+'_A'),('B',name+'_B')]))
+# Independent electronic latch driver and feedback; no powered rear-door motor.
+components.extend([
+ ('F23','LATCH BRANCH FUSE - TBD',[('IN','MOTOR24'),('OUT','LATCH_24')]),
+ ('U23','LATCH SOLENOID DRIVER + CLAMP - TBD',[('VIN','LATCH_24'),('GND','MOTOR_GND'),('RELEASE_3V3','LATCH_RELEASE'),('OUT','LATCH_SW')]),
+ ('Y1','ELECTRONIC LATCH - COIL VOLTAGE TBD',[('PLUS','LATCH_24'),('SW_RETURN','LATCH_SW')]),
+ ('J23','DOOR / LATCH FEEDBACK INTERFACE',[('DOOR_CLOSED','DOOR_CLOSED'),('LATCH_ENGAGED','LATCH_ENGAGED'),('GND','MOTOR_GND')]),
+ ('U24','ESP32 FEEDBACK / LATCH GPIO ASSIGNMENTS TBD',[('RELEASE','LATCH_RELEASE'),('CLOSED_INPUT','DOOR_CLOSED'),('ENGAGED_INPUT','LATCH_ENGAGED'),('BUCKET_LOWERED','BUCKET_LOWERED'),('EXCAVATOR_STOWED','EXCAVATOR_STOWED'),('EXCAVATOR_DEPLOYED','EXCAVATOR_DEPLOYED')]),
+ ('J24','ACTUATOR ENDPOINT FEEDBACK',[('BUCKET_LOWERED','BUCKET_LOWERED'),('EXCAVATOR_STOWED','EXCAVATOR_STOWED'),('EXCAVATOR_DEPLOYED','EXCAVATOR_DEPLOYED'),('GND','MOTOR_GND')]),
+])
 # Large sheet keeps every module legible without text overlap.
 for index,(ref,value,pins) in enumerate(components):
  x=48+(index%5)*110;y=38+(index//5)*78;h=max(12,len(pins)*2.54+5);key='Module_'+ref
@@ -44,6 +53,6 @@ for index,(ref,value,pins) in enumerate(components):
  puid=uid()
  instances.append(f'(symbol(lib_id "{key}")(at {x} {y} 0)(unit 1)(in_bom yes)(on_board no)(dnp no)(uuid "{puid}")(property "Reference" "{ref}" (at {x} {y-6} 0)(effects(font(size 1.27 1.27))))(property "Value" {q(value)} (at {x+10} {y-3} 0)(effects(font(size 1 1))))'+''.join(f'(pin "{j+1}"(uuid "{uid()}"))' for j in range(len(pins)))+f'(instances(project "Lunar_Hawks_RevC"(path "/{root_id}"(reference "{ref}")(unit 1)))))')
 notes='Engineering system wiring draft. Module ports are logical, NOT connector pin assignments.\nSelect real modules, protection ratings and contactor coil suppression before fabrication.\nIsolated UART: no MOTOR_GND to COMPUTE_GND connection. Verify USB shields do not bypass isolation.\nActuator synchronization, limit switches, driver input thresholds and watchdog remain design gates.'
-out=f'(kicad_sch(version 20250114)(generator "eeschema")(uuid "{root_id}")(paper "User" 594 841)(title_block(title "Lunar Hawks Rev C - System Wiring Draft")(rev "C"))(lib_symbols {"".join(lib)})'+''.join(wires+labels+instances)+f'(text {q(notes)} (at 20 640 0)(effects(font(size 2 2))(justify left top))(uuid "{uid()}")))'
+out=f'(kicad_sch(version 20250114)(generator "eeschema")(uuid "{root_id}")(paper "User" 594 841)(title_block(title "Lunar Hawks Rev C.1 - Top Hinged Door and Four Actuators")(rev "C.1"))(lib_symbols {"".join(lib)})'+''.join(wires+labels+instances)+f'(text {q(notes)} (at 20 750 0)(effects(font(size 2 2))(justify left top))(uuid "{uid()}")))'
 (P/'Lunar_Hawks_RevC.kicad_sch').write_text(out)
 (P/'module_connections.json').write_text(json.dumps(components,indent=2))
