@@ -16,11 +16,24 @@ def manager(state,positions,elapsed=1):
     with patch.dict('sys.modules',stubs):
         spec=importlib.util.spec_from_file_location('mission_test_subject',path);mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
     n=mod.MissionManager.__new__(mod.MissionManager)
+    n.fault_reason='';n.get_logger=lambda:NS(info=lambda m:None,error=lambda m:None)
     n.now=lambda:100.;n.get_parameter=lambda name:NS(value=True)
     n.state=state;n.since=100.-elapsed;n.scan_t=n.odom_t=n.mechanisms_t=100.;n.safe=True;n.mechanisms=positions;n.goal_t=-100.;n.goal=[];n.load=0;n.yaw=0.;n.target_yaw=0.
-    for name in ['cmd','exc','dump','status','deploy','release','hold']:setattr(n,name,Publisher())
+    for name in ['cmd','exc','dump','status','deploy','release','hold','diagnostic']:setattr(n,name,Publisher())
     return n
 class MechanismSequence(unittest.TestCase):
+    def test_first_fault_reason_survives_recovery(self):
+        n=manager('SCAN',[-.25,0,0,1]);n.mechanisms_t=98;n.tick()
+        self.assertIn('mechanisms feedback stale',n.diagnostic.last.data)
+        reason=n.diagnostic.last.data;n.mechanisms_t=100;n.tick()
+        self.assertEqual(n.diagnostic.last.data,reason);self.assertTrue(n.hold.last.data)
+    def test_timeout_reports_original_phase(self):
+        n=manager('DEPLOY',[-.15,0,0,1],elapsed=15);n.tick()
+        self.assertIn('DEPLOY: phase timeout',n.diagnostic.last.data)
+    def test_wait_reports_missing_safety_without_faulting(self):
+        n=manager('WAIT',[-.25,0,0,1]);n.safe=False;n.scan_t=-100;n.tick()
+        self.assertEqual(n.state,'WAIT');self.assertIn('safety feedback stale',n.diagnostic.last.data)
+        self.assertTrue(n.hold.last.data)
     def test_wait_for_deployment(self):
         n=manager('DEPLOY',[-.15,0,0,1]);n.tick()
         self.assertEqual(n.state,'DEPLOY');self.assertFalse(n.exc.last.data);self.assertTrue(n.deploy.last.data)
