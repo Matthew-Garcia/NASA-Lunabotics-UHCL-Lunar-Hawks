@@ -11,8 +11,11 @@ The angle is defined in the local tangential/axial construction plane; the cylin
 | `wheel.stl` | 1 | 248 × 248 × 94 | Printable structural wheel body |
 | `wheel_cover.stl` | 2 | 204 × 204 × 3 | Identical removable side covers |
 | `wheel_assembled.stl` | Do not print as one part | 248 × 248 × 100 | Assembled visual mesh for Gazebo/RViz |
+| `wheel_300mm_lab.stl` | 1 | 300 × 300 × 100 | Open-face lab-printer test article requested for an initial field evaluation |
 
 Print the body axle-up at 100% scale, centered on the nominal 256 mm plate, and drop it to the bed. The body leaves 4 mm per side; a 3 mm brim has a 254 mm bounding envelope. Print each cover flat in a separate job/plate as needed. Confirm supports beneath the recessed hub/spokes, prime paths, machine exclusion areas, brim and filament/time estimates in the actual slicer profile. No Bambu Studio slice or physical print has been verified here.
+
+The separate `wheel_300mm_lab.stl` is the full-size laboratory-printer version. It has a 300 mm outside diameter, 100 mm width, twelve swept fins at 30 degree spacing, and an open face. It does not fit the 256 mm Bambu X1C plate as a single part. Confirm the laboratory printer's usable XY area, edge margin, Z clearance and slicer-generated toolpath before starting the print. The 18 mm bore and six-hole 55 mm bolt circle are still provisional and must be measured against the physical hub before a rover-mounted test.
 
 Each cover has six 3.4 mm clearance holes on a 196 mm bolt circle, aligned with 2.5 mm pilot holes about 8 mm deep in the wheel rim. A nominal M3×10 fastener through a 3 mm cover provides about 7 mm engagement. This is a prototype fastening layout, not a qualified plastic thread: confirm pilot size/thread method with the chosen material and a coupon before assembly. Fasteners are not modeled in the assembled STL. Access and mount the wheel hub before installing the covers.
 
@@ -40,6 +43,7 @@ Test the previous and revised wheels at the same load, soil preparation and trav
 openscad -o cad/full_rover/wheel.stl -D 'part="wheel"' cad/full_rover/rover.scad
 openscad -o cad/full_rover/wheel_cover.stl -D 'part="wheel_cover"' cad/full_rover/rover.scad
 openscad -o cad/full_rover/wheel_assembled.stl -D 'part="wheel_assembled"' cad/full_rover/rover.scad
+openscad -o cad/full_rover/wheel_300mm_lab.stl cad/full_rover/wheel_300mm_lab.scad
 python3 tools/build_description.py
 python3 tools/preview_wheel.py
 ```
