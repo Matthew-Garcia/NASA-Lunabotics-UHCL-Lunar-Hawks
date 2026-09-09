@@ -551,7 +551,7 @@ The project has been accepted for presentation at **ISMCR 2026 — International
 
 Research documentation and publication status are maintained under:
 
-[docs/publication/](docs/publication/README.md)
+[Read the author manuscript (Word)](docs/publication/manuscript/Nguyen_Garcia_ISMCR2026_Final_Revision.docx) · [Publication status](docs/publication/README.md)
 
 ---
 
