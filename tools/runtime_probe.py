@@ -99,7 +99,7 @@ except Exception as e:
     raise
 finally:
     drive.publish(Twist());pubs['/mechanisms/hold'].publish(Bool(data=True))
-    os.killpg(proc.pid,signal.SIGTERM)
+    os.killpg(proc.pid,signal.SIGINT)
     try:proc.wait(timeout=10)
     except subprocess.TimeoutExpired:os.killpg(proc.pid,signal.SIGKILL)
     n.destroy_node();rclpy.shutdown();log.close()
