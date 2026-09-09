@@ -1,200 +1,212 @@
-"""Limited WebSocket dry-run server for CPython/MicroPython; NO GPIO outputs.
-
-Single client, <=125-byte masked, unfragmented text messages. No TLS/auth.
-Bind to localhost for host tests; private lab network only on an ESP32.
-Do not turn this into a physical controller without a separate safety design.
-"""
-import asyncio
-import binascii
-import hashlib
-import json
-import math
-import sys
 import time
+from machine import Pin, PWM
+from microdot import Microdot
+from microdot.websocket import with_websocket
 
-GUID = b"258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
-TIMEOUT_MS = 500
+# ==================================================
+# PIN DEFINITIONS (same as Arduino)
+# ==================================================
 
+DIR_FR = Pin(2, Pin.OUT)
+DIR_FL = Pin(4, Pin.OUT)
+DIR_BR = Pin(5, Pin.OUT)
+DIR_BL = Pin(13, Pin.OUT)
 
-def now_ms():
-    if hasattr(time, "ticks_ms"):
-        return time.ticks_ms()
-    return int(time.monotonic() * 1000)
+FR_PWM = PWM(Pin(18), freq=20000)
+BR_PWM = PWM(Pin(19), freq=20000)
+FL_PWM = PWM(Pin(32), freq=20000)
+BL_PWM = PWM(Pin(33), freq=20000)
 
+MOTOR_IN1 = Pin(25, Pin.OUT)
+MOTOR_IN2 = Pin(26, Pin.OUT)
 
-def elapsed_ms(now, then):
-    if hasattr(time, "ticks_diff"):
-        return time.ticks_diff(now, then)
-    return now - then
+servoPin = Pin(12, Pin.OUT)
+signalPin = Pin(23, Pin.OUT)
 
+# ==================================================
+# SAFE STARTUP
+# ==================================================
+def all_stop():
+    FR_PWM.duty(0)
+    BR_PWM.duty(0)
+    FL_PWM.duty(0)
+    BL_PWM.duty(0)
 
-def parse_command(payload):
-    """Require explicit deadman and finite normalized v/w values."""
-    obj = json.loads(payload)
-    if not isinstance(obj, dict) or set(obj) != {"v", "w", "deadman"}:
-        raise ValueError("Expected only v, w and deadman")
-    if type(obj["deadman"]) is not bool:
-        raise ValueError("deadman must be boolean")
-    for name in ("v", "w"):
-        value = obj[name]
-        if type(value) not in (int, float):
-            raise ValueError("v and w must be numbers, not booleans")
-        if not math.isfinite(value) or not -1.0 <= value <= 1.0:
-            raise ValueError("v and w must be finite and within [-1, 1]")
-    if not obj["deadman"]:
-        return 0.0, 0.0
-    return float(obj["v"]), float(obj["w"])
+    DIR_FR.value(0)
+    DIR_FL.value(0)
+    DIR_BR.value(0)
+    DIR_BL.value(0)
 
+    MOTOR_IN1.value(0)
+    MOTOR_IN2.value(0)
+    servoPin.value(0)
+    signalPin.value(0)
 
-def mix(v, w):
-    """Normalized arcade mixer, NOT calibrated velocity or PWM units."""
-    left, right = v - w, v + w
-    scale = max(1.0, abs(left), abs(right))
-    return left / scale, right / scale
+all_stop()
+print("SAFE STARTUP: Motors OFF")
 
+# ==================================================
+# MOTOR CONTROL HELPERS
+# ==================================================
+def set_pwm(pwm, val):
+    duty = min(max(int(val), 0), 255)
+    pwm.duty(duty)
 
-class DryRunController:
-    """Records normalized left/right requests only; cannot drive hardware."""
+# ==================================================
+# FORWARD / BACKWARD (unchanged)
+# ==================================================
+def forward(power):
+    set_pwm(FR_PWM, power * 1.2)
+    set_pwm(BR_PWM, power)
+    set_pwm(FL_PWM, power * 1.8)
+    set_pwm(BL_PWM, power)
 
-    def __init__(self):
-        self.outputs = (0.0, 0.0)
-        self.last_ms = None
+    DIR_FR.value(1)
+    DIR_FL.value(1)
+    DIR_BR.value(0)
+    DIR_BL.value(0)
 
-    def stop(self):
-        self.outputs = (0.0, 0.0)
-        self.last_ms = None
+def backward(power):
+    set_pwm(FR_PWM, power * 1.8)
+    set_pwm(BR_PWM, power * 1.5)
+    set_pwm(FL_PWM, power / 1.2)
+    set_pwm(BL_PWM, power / 1.5)
 
-    def receive(self, payload, stamp):
-        try:
-            self.outputs = mix(*parse_command(payload))
-            self.last_ms = stamp
-        except (ValueError, TypeError, OverflowError):
-            self.stop()
-            raise
-        return self.outputs
+    DIR_FR.value(0)
+    DIR_FL.value(0)
+    DIR_BR.value(1)
+    DIR_BL.value(1)
 
-    def expire(self, stamp):
-        if self.last_ms is not None:
-            if elapsed_ms(stamp, self.last_ms) >= TIMEOUT_MS:
-                self.stop()
-        return self.outputs
+# ==================================================
+# UPDATED TANK TURNING (NEW)
+# ==================================================
+def tankLeft(power):
+    print("TANK LEFT")
 
+    # RIGHT wheels forward
+    set_pwm(FR_PWM, power)
+    set_pwm(BR_PWM, power)
+    DIR_FR.value(1)
+    DIR_BR.value(1)
 
-def accept_key(key):
-    raw = binascii.a2b_base64(key)
-    if len(raw) != 16:
-        raise ValueError("Invalid WebSocket key")
-    return binascii.b2a_base64(hashlib.sha1(key + GUID).digest()).strip()
+    # LEFT wheels reverse
+    set_pwm(FL_PWM, power)
+    set_pwm(BL_PWM, power)
+    DIR_FL.value(1)
+    DIR_BL.value(1)
 
+def tankRight(power):
+    print("TANK RIGHT")
 
-async def handshake(reader, writer):
-    """Bound the full HTTP header to 2048 bytes; caller bounds duration."""
-    header = bytearray()
-    while not header.endswith(b"\r\n\r\n"):
-        if len(header) >= 2048:
-            raise ValueError("Header too large")
-        header.extend(await reader.readexactly(1))
-    lines = bytes(header).split(b"\r\n")
-    if lines[0] != b"GET /control HTTP/1.1":
-        raise ValueError("Use /control")
-    fields = {}
-    for line in lines[1:]:
-        if line:
-            name, value = line.split(b":", 1)
-            name = name.strip().lower()
-            if name in fields:
-                raise ValueError("Duplicate header")
-            fields[name] = value.strip()
-    connection = [s.strip().lower() for s in fields.get(b"connection", b"").split(b",")]
-    if (fields.get(b"upgrade", b"").lower() != b"websocket"
-            or b"upgrade" not in connection
-            or fields.get(b"sec-websocket-version") != b"13"):
-        raise ValueError("Invalid upgrade")
-    key = accept_key(fields.get(b"sec-websocket-key", b""))
-    writer.write(b"HTTP/1.1 101 Switching Protocols\r\n"
-                 b"Upgrade: websocket\r\nConnection: Upgrade\r\n"
-                 b"Sec-WebSocket-Accept: " + key + b"\r\n\r\n")
-    await writer.drain()
+    # LEFT wheels forward
+    set_pwm(FL_PWM, power)
+    set_pwm(BL_PWM, power)
+    DIR_FL.value(0)
+    DIR_BL.value(0)
 
+    # RIGHT wheels reverse
+    set_pwm(FR_PWM, power)
+    set_pwm(BR_PWM, power)
+    DIR_FR.value(0)
+    DIR_BR.value(0)
 
-async def read_frame(reader):
-    """Deliberately supports only short FIN frames, without extensions."""
-    first, second = await reader.readexactly(2)
-    opcode, length = first & 15, second & 127
-    if not first & 128 or first & 112 or not second & 128:
-        raise ValueError("Requires FIN, no extensions, and masking")
-    if opcode not in (1, 8, 9, 10) or length > 125:
-        raise ValueError("Unsupported frame")
-    mask = await reader.readexactly(4)
-    data = await reader.readexactly(length)
-    return opcode, bytes(x ^ mask[i % 4] for i, x in enumerate(data))
+# ==================================================
+# OLD ARC TURNING (no longer used, but kept)
+# ==================================================
+def leftforward(power):
+    set_pwm(FR_PWM, power)
+    set_pwm(BR_PWM, power)
+    set_pwm(FL_PWM, 0)
+    set_pwm(BL_PWM, 0)
 
+    DIR_FR.value(1)
+    DIR_FL.value(1)
+    DIR_BR.value(0)
+    DIR_BL.value(0)
 
-class DryRunServer:
-    """A second connection cannot take ownership or stop an active client."""
+def rightforward(power):
+    set_pwm(FR_PWM, 0)
+    set_pwm(BR_PWM, 0)
+    set_pwm(FL_PWM, power * 1.5)
+    set_pwm(BL_PWM, power * 1.5)
 
-    def __init__(self):
-        self.controller = DryRunController()
-        self.busy = False
+    DIR_FR.value(1)
+    DIR_FL.value(1)
+    DIR_BR.value(0)
+    DIR_BL.value(0)
 
-    async def handle(self, reader, writer):
-        if self.busy:
-            writer.close()
-            await writer.wait_closed()
-            return
-        self.busy = True
-        try:
-            await asyncio.wait_for(handshake(reader, writer), 2.0)
-            while True:
-                # Short timeout includes the whole frame, not each byte.
-                opcode, payload = await asyncio.wait_for(read_frame(reader), 0.5)
-                if opcode == 8:
-                    writer.write(b"\x88\x00")
-                    await writer.drain()
-                    break
-                if opcode == 9:
-                    writer.write(bytes((138, len(payload))) + payload)
-                    await writer.drain()
-                elif opcode == 1:
-                    result = self.controller.receive(payload.decode("utf-8"), now_ms())
-                    reply = json.dumps({"dry_run": True, "left": result[0],
-                                        "right": result[1]}).encode()
-                    writer.write(bytes((129, len(reply))) + reply)
-                    await writer.drain()
-        except (Exception,):
-            # Any malformed input, disconnect or timeout clears dry-run state.
-            pass
-        finally:
-            self.controller.stop()
-            writer.close()
-            try:
-                await writer.wait_closed()
-            finally:
-                self.busy = False
+# ==================================================
+# GENERAL CONTROL
+# ==================================================
+def stop():
+    all_stop()
 
-    async def watchdog(self):
-        while True:
-            self.controller.expire(now_ms())
-            await asyncio.sleep(0.02)
+def up():
+    MOTOR_IN1.value(1)
+    MOTOR_IN2.value(0)
 
+def down():
+    MOTOR_IN1.value(0)
+    MOTOR_IN2.value(1)
 
-async def serve(host="127.0.0.1", port=8765):
-    service = DryRunServer()
-    watchdog = asyncio.create_task(service.watchdog())
-    server = await asyncio.start_server(service.handle, host, port)
-    print("DRY RUN WebSocket on", host, port, "/control")
-    try:
-        while True:
-            await asyncio.sleep(1)
-    finally:
-        watchdog.cancel()
-        server.close()
-        await server.wait_closed()
-        service.controller.stop()
+def dump():
+    servoPin.value(1)
 
+# ==================================================
+# WEBSOCKET SERVER
+# ==================================================
 
-if __name__ == "__main__":
-    if sys.implementation.name == "micropython":
-        print("Dry-run main.py loaded. Start serve() explicitly at the REPL.")
-    else:
-        asyncio.run(serve())
+POWER = 40
+
+app = Microdot()
+
+@app.route("/")
+def index(req):
+    return "ESP32 Rover Ready"
+
+@app.route("/ws")
+@with_websocket
+async def ws_handler(req, ws):
+    print("WS connected")
+
+    while True:
+        msg = await ws.receive()
+        if msg is None:
+            break
+
+        msg = msg.strip()
+        print("RX:", msg)
+
+        # Driving
+        if msg == "FWD":
+            forward(POWER)
+        elif msg == "BACK":
+            backward(POWER)
+        elif msg == "LEFT":
+            tankLeft(POWER)        # *** NEW TANK LEFT ***
+        elif msg == "RIGHT":
+            tankRight(POWER)       # *** NEW TANK RIGHT ***
+        elif msg == "STOP":
+            stop()
+
+        # Actuator
+        elif msg == "RB":
+            up()
+        elif msg == "LB":
+            down()
+
+        # Dump
+        elif msg == "triangle":
+            dump()
+
+        # Extra signal pin
+        elif msg == "X":
+            signalPin.value(1)
+
+        await ws.send("ACK")
+
+    all_stop()
+    print("WS disconnected")
+
+print("Microdot running on 0.0.0.0:81")
+app.run(host="0.0.0.0", port=81)
