@@ -538,10 +538,10 @@ Before powering physical motors or actuators:
 # Research
 
 **Matthew Garcia**  
-Repository maintainer · Robotics systems integration · Embedded systems · ROS 2 / autonomy contributor
+Repository maintainer · Robotics systems integration · Embedded systems · ROS 2 / autonomy contributor · Co-Author
 
 **Dr. Luong Nguyen, Ph.D.**  
-Research adviser · Co-author
+Research adviser · Lead-author
 
 Credit also belongs to the **University of Houston–Clear Lake Lunar Hawks team** and the students who designed, built, tested, and improved the rover platform.
 
