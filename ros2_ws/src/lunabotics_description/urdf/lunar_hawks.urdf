@@ -926,7 +926,7 @@
       </camera>
       <plugin name="camera" filename="libgazebo_ros_camera.so">
         <ros>
-          <namespace>/camera</namespace>
+          <namespace>/</namespace>
         </ros>
         <camera_name>camera</camera_name>
         <frame_name>camera_optical_frame</frame_name>

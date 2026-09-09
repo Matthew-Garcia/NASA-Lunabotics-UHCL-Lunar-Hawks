@@ -79,7 +79,8 @@ try:
     assert 'process has died' not in text, 'A simulation process died; inspect log'
     (out/'runtime.json').write_text(json.dumps({'passed':checks,'status':'passed'},indent=2))
 except Exception as e:
-    (out/'runtime.json').write_text(json.dumps({'passed':checks,'status':'failed','error':str(e)},indent=2))
+    subprocess.run(['import','-window','root',str(out/'gazebo-rviz-failure.png')],check=False)
+    (out/'runtime.json').write_text(json.dumps({'passed':checks,'status':'failed','error':str(e),'received_topics':list(data),'mechanisms':list(state()) if 'mechanisms' in data else []},indent=2))
     raise
 finally:
     drive.publish(Twist());pubs['/mechanisms/hold'].publish(Bool(data=True))

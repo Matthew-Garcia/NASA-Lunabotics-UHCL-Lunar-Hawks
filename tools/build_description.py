@@ -82,7 +82,7 @@ pl=sub(s,'plugin',name='laser',filename='libgazebo_ros_ray_sensor.so');ros=sub(p
 g=sub(r,'gazebo',reference='camera_link');s=sub(g,'sensor',name='camera',type='camera');txt(s,'update_rate',15);cam=sub(s,'camera');txt(cam,'horizontal_fov',1.4);im=sub(cam,'image')
 for t,v in [('width',640),('height',480),('format','R8G8B8')]:txt(im,t,v)
 clip=sub(cam,'clip');txt(clip,'near',.05);txt(clip,'far',30)
-pl=sub(s,'plugin',name='camera',filename='libgazebo_ros_camera.so');ros=sub(pl,'ros');txt(ros,'namespace','/camera');txt(pl,'camera_name','camera');txt(pl,'frame_name','camera_optical_frame')
+pl=sub(s,'plugin',name='camera',filename='libgazebo_ros_camera.so');ros=sub(pl,'ros');txt(ros,'namespace','/');txt(pl,'camera_name','camera');txt(pl,'frame_name','camera_optical_frame')
 E.indent(r)
 (P/'urdf/lunar_hawks.urdf').write_text(E.tostring(r,encoding='unicode'))
 for f in (ROOT/'cad/full_rover').glob('*.stl'):shutil.copy(f,P/'meshes'/f.name)
