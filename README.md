@@ -290,8 +290,11 @@ It represents:
 - LiDAR
 - RGB camera
 
-An integrated Gazebo spawn/bringup launch file is still planned.
+<p align="center">
+  <img src="media/Lunabotics_Gazebo.png" width="900" alt="UHCL Lunar Hawks rover in Gazebo">
+</p>
 
+*Lunar Hawks rover simulation with grouser wheels, a scoop conveyor excavator, and an actuator-driven disposal bucket. Full autonomous excavation and disposal remain under development.*
 ---
 
 # Computer vision
