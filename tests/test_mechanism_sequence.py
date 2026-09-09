@@ -16,7 +16,7 @@ def manager(state,positions,elapsed=1):
     with patch.dict('sys.modules',stubs):
         spec=importlib.util.spec_from_file_location('mission_test_subject',path);mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
     n=mod.MissionManager.__new__(mod.MissionManager)
-    n.fault_reason='';n.get_logger=lambda:NS(info=lambda m:None,error=lambda m:None)
+    n.fault_reason='';n.ready_since=None;n.last_tick=None;n.get_logger=lambda:NS(info=lambda m:None,error=lambda m:None)
     n.now=lambda:100.;n.get_parameter=lambda name:NS(value=True)
     n.state=state;n.since=100.-elapsed;n.scan_t=n.odom_t=n.mechanisms_t=100.;n.safe=True;n.mechanisms=positions;n.goal_t=-100.;n.goal=[];n.load=0;n.yaw=0.;n.target_yaw=0.
     for name in ['cmd','exc','dump','status','deploy','release','hold','diagnostic']:setattr(n,name,Publisher())
@@ -34,6 +34,19 @@ class MechanismSequence(unittest.TestCase):
         n=manager('WAIT',[-.25,0,0,1]);n.safe=False;n.scan_t=-100;n.tick()
         self.assertEqual(n.state,'WAIT');self.assertIn('safety feedback stale',n.diagnostic.last.data)
         self.assertTrue(n.hold.last.data)
+    def test_waits_for_nonzero_clock_and_stable_inputs(self):
+        n=manager('WAIT',[-.25,0,0,1]);n.now=lambda:0.;n.scan_t=n.odom_t=n.mechanisms_t=0.;n.tick()
+        self.assertEqual(n.state,'WAIT');self.assertTrue(n.hold.last.data)
+        for t in [52.3,52.5,52.7,52.9,53.1]:
+            n.now=lambda t=t:t;n.scan_t=n.odom_t=n.mechanisms_t=t;n.tick()
+            self.assertEqual(n.state,'WAIT')
+        n.now=lambda:53.4;n.scan_t=n.odom_t=n.mechanisms_t=53.4;n.tick()
+        self.assertEqual(n.state,'WAIT') # jump tick did not count toward stable interval
+        n.now=lambda:53.6;n.scan_t=n.odom_t=n.mechanisms_t=53.6;n.tick()
+        self.assertEqual(n.state,'SCAN')
+    def test_backward_clock_during_scan_faults(self):
+        n=manager('SCAN',[-.25,0,0,1]);n.last_tick=101.;n.tick()
+        self.assertEqual(n.state,'FAULT');self.assertIn('clock',n.fault_reason)
     def test_wait_for_deployment(self):
         n=manager('DEPLOY',[-.15,0,0,1]);n.tick()
         self.assertEqual(n.state,'DEPLOY');self.assertFalse(n.exc.last.data);self.assertTrue(n.deploy.last.data)

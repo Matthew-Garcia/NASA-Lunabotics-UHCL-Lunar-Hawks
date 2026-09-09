@@ -10,7 +10,7 @@ class MissionManager(Node):
     def __init__(self):
         super().__init__('mission_manager')
         self.declare_parameter('simulation_mission',False)
-        self.fault_reason=''
+        self.fault_reason='';self.ready_since=None;self.last_tick=None
         self.state='WAIT'; self.since=self.now();self.safe=False;self.scan_t=-100
         self.goal=[];self.goal_t=-100;self.load=0;self.yaw=None;self.odom_t=-100;self.target_yaw=0
         self.cmd=self.create_publisher(Twist,'/cmd_vel',10)
@@ -48,26 +48,34 @@ class MissionManager(Node):
     def tick(self):
         now=self.now();elapsed=now-self.since;v=w=0.;exc=dump=False
         enabled=self.get_parameter('simulation_mission').value and self.get_parameter('use_sim_time').value
-        fresh=now-self.scan_t<.5 and now-self.odom_t<.5 and now-self.mechanisms_t<.5 and len(self.mechanisms)==4 and all(math.isfinite(x) for x in self.mechanisms)
+        fresh=now>0 and 0<=now-self.scan_t<.5 and 0<=now-self.odom_t<.5 and 0<=now-self.mechanisms_t<.5 and len(self.mechanisms)==4 and all(math.isfinite(x) for x in self.mechanisms)
         deployed=fresh and self.mechanisms[0]>-.01
         stowed=fresh and self.mechanisms[0]<-.24
         lowered=fresh and self.mechanisms[1]<.03
         latched=fresh and self.mechanisms[3]>.5
         closed=fresh and abs(self.mechanisms[2])<.04
         goal=now-self.goal_t<.5 and len(self.goal)==4 and all(math.isfinite(x) for x in self.goal) and self.goal[3]==4
+        clock_jump=self.last_tick is not None and (now<self.last_tick or now-self.last_tick>.5)
+        self.last_tick=now
+        if clock_jump or not (enabled and fresh and self.safe and stowed and lowered and latched):
+            self.ready_since=None
         issues=[]
+        if now<=0:issues.append('waiting for first nonzero simulation clock')
+        if clock_jump:issues.append('simulation clock discontinuity or callback gap >0.5s')
         if not enabled:issues.append('simulation_mission and use_sim_time must both be enabled')
         for name,stamp in [('safety',self.scan_t),('odometry',self.odom_t),('mechanisms',self.mechanisms_t)]:
             age=now-stamp
-            if age>=.5:issues.append(f'{name} feedback stale: {age:.3f}s (limit 0.500s)')
+            if age<0 or age>=.5:issues.append(f'{name} feedback stale: {age:.3f}s (limit 0.500s)')
         if len(self.mechanisms)!=4 or not all(math.isfinite(x) for x in self.mechanisms):
             issues.append('invalid mechanism feedback: '+str(self.mechanisms))
         if not self.safe:issues.append('obstacle_stop is true or has not arrived')
-        if not enabled or not fresh or not self.safe:
+        if not enabled or not fresh or not self.safe or clock_jump:
             # Fault latches; never advance a mission on stale/invalid range data.
             if self.state!='WAIT':self.fault('; '.join(issues) or 'input freshness check failed')
         elif self.state=='WAIT':
-            if stowed and lowered and latched:self.state_to('SCAN')
+            if stowed and lowered and latched:
+                if self.ready_since is None:self.ready_since=now
+                elif now-self.ready_since>=1.0:self.state_to('SCAN')
         elif self.state=='SCAN':
             w=.25
             if elapsed>2*math.pi/.25:self.state_to('DEPLOY')
@@ -119,7 +127,7 @@ class MissionManager(Node):
         if self.state not in ['SCAN','COLLECT','FIND_GOAL','APPROACH','TURN_REAR']:v=w=0.
         if self.state in ['FIND_GOAL','APPROACH','TURN_REAR','SCAN'] and not (stowed and lowered and latched):self.fault(f'travel interlock: stowed={stowed}, lowered={lowered}, latched={latched}; mechanisms={self.mechanisms}')
         if self.state in ['WAIT','FAULT','DONE'] or not fresh or not self.safe:v=w=0.;exc=dump=False
-        detail=self.fault_reason if self.state=='FAULT' else ('; '.join(issues) or ('waiting for stowed excavator, lowered bucket and engaged latch' if self.state=='WAIT' else self.state))
+        detail=self.fault_reason if self.state=='FAULT' else ('; '.join(issues) or ('waiting for 1s of stable clock, fresh inputs and stowed/latched mechanisms' if self.state=='WAIT' else self.state))
         self.diagnostic.publish(String(data=detail))
         t=Twist();t.linear.x=float(v);t.angular.z=float(w);self.cmd.publish(t)
         self.exc.publish(Bool(data=exc));self.dump.publish(Bool(data=dump));self.status.publish(String(data=self.state))

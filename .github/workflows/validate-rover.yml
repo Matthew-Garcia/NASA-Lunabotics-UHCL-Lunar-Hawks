@@ -33,6 +33,12 @@ jobs:
           source ros2_ws/install/setup.bash
           mkdir -p validation
           xvfb-run -a -s '-screen 0 1440x1000x24' python3 tools/runtime_probe.py
+      - name: Autonomous startup and scan regression
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          source ros2_ws/install/setup.bash
+          xvfb-run -a -s '-screen 0 1440x1000x24' python3 tools/autonomy_start_probe.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
