@@ -1,3 +1,5 @@
+> **New simulation review branch:** [Full rover CAD, Gazebo/RViz launch and KiCad Rev C](docs/SIMULATION_REVIEW.md). Reference-derived geometry; runtime and electrical review remain pending.
+
 <p align="center"><img src="media/UHCL_Lunabotics_Logo.jfif" width="180" alt="UHCL Lunar Hawks team logo"></p>
 
 # NASA Lunabotics · UHCL Lunar Hawks

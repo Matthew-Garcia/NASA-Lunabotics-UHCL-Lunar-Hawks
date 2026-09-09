@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import Image
 from std_msgs.msg import Float32MultiArray, Int32
 from cv_bridge import CvBridge
@@ -20,11 +21,11 @@ class GoalPostDetector(Node):
         self.declare_parameter('min_area_px', 350.0)
         self.declare_parameter('min_aspect_ratio', 2.0)
         self.declare_parameter('max_aspect_ratio', 12.0)
-        self.declare_parameter('hsv_low', [0, 0, 130])
-        self.declare_parameter('hsv_high', [180, 90, 255])
+        self.declare_parameter('hsv_low', [95, 100, 70])
+        self.declare_parameter('hsv_high', [135, 255, 255])
         topic = self.get_parameter('camera_topic').value
         self.bridge = CvBridge()
-        self.sub = self.create_subscription(Image, topic, self.cb, 10)
+        self.sub = self.create_subscription(Image, topic, self.cb, qos_profile_sensor_data)
         self.pub_target = self.create_publisher(Float32MultiArray, '/vision/goal_posts/target', 10)
         self.pub_count = self.create_publisher(Int32, '/vision/goal_posts/count', 10)
         self.pub_debug = self.create_publisher(Image, '/vision/goal_posts/debug', 10)
@@ -56,6 +57,8 @@ class GoalPostDetector(Node):
         for x,y,w,h,_ in candidates:
             cv2.rectangle(frame, (x,y), (x+w,y+h), (0,255,0), 2)
         count = Int32(); count.data = len(candidates); self.pub_count.publish(count)
+        if not candidates:
+            self.pub_target.publish(Float32MultiArray(data=[]))
         if candidates:
             centers = np.array([[x+w/2.0, y+h/2.0] for x,y,w,h,_ in candidates])
             cx, cy = centers.mean(axis=0)
