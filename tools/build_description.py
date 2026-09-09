@@ -69,8 +69,10 @@ for side,y in [('left',.29),('right',-.29)]:
  joint('excavator_actuator_'+side+'_mount','base_link','excavator_actuator_'+side,f'.33 {y} .15','0 .45 0')
  link('excavator_rod_'+side,'actuator_rod',box='.016 .016 .23',m=.2)
  joint('excavator_rod_'+side+'_joint','excavator_actuator_'+side,'excavator_rod_'+side,'0 0 .15',typ='prismatic',axis='0 0 1',limits=(0,.15))
-link('lidar_link',box='.06 .06 .05',m=.15);joint('lidar_mount','base_link','lidar_link','.15 0 .5')
-link('camera_link',box='.04 .08 .04',m=.1);joint('camera_mount','base_link','camera_link','.36 0 .42')
+# Sensor housings are visual-only in simulation. Collision geometry on fixed
+# sensor links can be returned by Gazebo's ray sensor as a false obstacle.
+link('lidar_link',m=.15);joint('lidar_mount','base_link','lidar_link','.15 0 .62')
+link('camera_link',m=.1);joint('camera_mount','base_link','camera_link','.36 0 .42')
 sub(r,'link',name='camera_optical_frame');joint('camera_optical','camera_link','camera_optical_frame',rpy='-1.57079632679 0 -1.57079632679')
 gz=sub(r,'gazebo'); sub(gz,'plugin',name='mechanisms',filename='liblunar_mechanisms.so'); d=sub(gz,'plugin',name='drive',filename='libgazebo_ros_diff_drive.so')
 for t,v in [('num_wheel_pairs',2),('left_joint','wheel_fl_joint'),('right_joint','wheel_fr_joint'),('left_joint','wheel_rl_joint'),('right_joint','wheel_rr_joint'),('wheel_separation',.75),('wheel_separation',.75),('wheel_diameter',.248),('wheel_diameter',.248),('max_wheel_torque',40),('max_wheel_acceleration',.5),('command_topic','cmd_vel'),('odometry_topic','odom'),('odometry_frame','odom'),('robot_base_frame','base_link'),('publish_odom','true'),('publish_odom_tf','true'),('publish_wheel_tf','false')]:txt(d,t,v)

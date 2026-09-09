@@ -781,22 +781,17 @@
     </inertial>
     <visual>
       <geometry>
-        <box size=".06 .06 .05" />
+        <box size=".04 .04 .04" />
       </geometry>
       <material name="lidar_link_color">
         <color rgba="0.65 0.68 0.70 1" />
       </material>
     </visual>
-    <collision>
-      <geometry>
-        <box size=".06 .06 .05" />
-      </geometry>
-    </collision>
   </link>
   <joint name="lidar_mount" type="fixed">
     <parent link="base_link" />
     <child link="lidar_link" />
-    <origin xyz=".15 0 .5" rpy="0 0 0" />
+    <origin xyz=".15 0 .62" rpy="0 0 0" />
   </joint>
   <gazebo reference="lidar_mount">
     <preserveFixedJoint>true</preserveFixedJoint>
@@ -808,17 +803,12 @@
     </inertial>
     <visual>
       <geometry>
-        <box size=".04 .08 .04" />
+        <box size=".04 .04 .04" />
       </geometry>
       <material name="camera_link_color">
         <color rgba="0.65 0.68 0.70 1" />
       </material>
     </visual>
-    <collision>
-      <geometry>
-        <box size=".04 .08 .04" />
-      </geometry>
-    </collision>
   </link>
   <joint name="camera_mount" type="fixed">
     <parent link="base_link" />
