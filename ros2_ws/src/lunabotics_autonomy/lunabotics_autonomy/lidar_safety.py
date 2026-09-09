@@ -9,8 +9,10 @@ class LidarSafety(Node):
     def __init__(self):
         super().__init__('lidar_safety');self.last=-100.;self.distance=0.;self.valid=False
         self.usable=0;self.total=0;self.previous_codes=None;self.last_stop='none'
+        self.near_count=0
         self.diagnostic=self.create_publisher(String,'/safety/diagnostic',10)
         self.declare_parameter('stop_distance_m',.6)
+        self.declare_parameter('near_confirm_scans',2)
         self.create_subscription(LaserScan,'/scan',self.cb,qos_profile_sensor_data)
         self.stop=self.create_publisher(Bool,'/safety/obstacle_stop',10)
         self.clear=self.create_publisher(Float32,'/safety/front_clearance',10)
@@ -23,14 +25,18 @@ class LidarSafety(Node):
         self.usable=usable;self.total=len(m.ranges)
         self.valid=len(m.ranges)>0 and usable>=.8*len(m.ranges)
         self.distance=min(vals) if vals else m.range_max;self.last=self.now()
+        limit=self.get_parameter('stop_distance_m').value
+        self.near_count=self.near_count+1 if self.valid and self.distance<limit else 0
     def tick(self):
         age=self.now()-self.last;limit=self.get_parameter('stop_distance_m').value
         codes=[]
         if not self.valid:codes.append('INVALID_SCAN')
         if age>.5:codes.append('STALE_SCAN')
-        if self.distance<limit:codes.append('NEAR_RETURN')
+        confirm=max(1,int(self.get_parameter('near_confirm_scans').value))
+        if self.distance<limit and self.near_count>=confirm:codes.append('NEAR_RETURN')
         bad=bool(codes)
-        detail=f'{",".join(codes) or "CLEAR"}: minimum={self.distance:.3f}m; limit={limit:.3f}m; scan_age={age:.3f}s; usable={self.usable}/{self.total}'
+        status=','.join(codes) or ('PENDING_NEAR_RETURN' if self.distance<limit else 'CLEAR')
+        detail=f'{status}: minimum={self.distance:.3f}m; limit={limit:.3f}m; scan_age={age:.3f}s; usable={self.usable}/{self.total}; near_scans={self.near_count}/{confirm}'
         if tuple(codes)!=self.previous_codes:
             if bad:
                 self.last_stop=detail

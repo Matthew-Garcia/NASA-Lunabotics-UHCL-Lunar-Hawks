@@ -14,9 +14,9 @@ class LidarDiagnostic(unittest.TestCase):
         p=Path(__file__).resolve().parents[1]/'ros2_ws/src/lunabotics_autonomy/lunabotics_autonomy/lidar_safety.py'
         with patch.dict('sys.modules',stubs):
             spec=importlib.util.spec_from_file_location('lidar_subject',p);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
-        n=m.LidarSafety.__new__(m.LidarSafety);n.now=lambda:100.;n.get_parameter=lambda x:NS(value=.6)
+        n=m.LidarSafety.__new__(m.LidarSafety);n.now=lambda:100.;n.get_parameter=lambda x:NS(value=2 if x=='near_confirm_scans' else .6)
         n.get_logger=lambda:NS(info=lambda x:None,warning=lambda x:None)
-        n.stop=Pub();n.clear=Pub();n.diagnostic=Pub();n.previous_codes=None;n.last_stop='none'
+        n.stop=Pub();n.clear=Pub();n.diagnostic=Pub();n.previous_codes=None;n.last_stop='none';n.near_count=0
         return n
     def test_invalid_scan_stops_despite_distant_return(self):
         n=self.node();n.cb(Message(ranges=[5.86]+[float('nan')]*9,range_min=.1,range_max=18));n.tick()
@@ -25,8 +25,13 @@ class LidarDiagnostic(unittest.TestCase):
         n=self.node();n.cb(Message(ranges=[5.86]*10,range_min=.1,range_max=18));n.last=99;n.tick()
         self.assertTrue(n.stop.last.data);self.assertIn('STALE_SCAN',n.diagnostic.last.data)
     def test_near_stop_reason_retained_after_clear(self):
-        n=self.node();n.cb(Message(ranges=[.2]*10,range_min=.1,range_max=18));n.tick()
+        n=self.node();n.cb(Message(ranges=[.2]*10,range_min=.1,range_max=18));n.cb(Message(ranges=[.2]*10,range_min=.1,range_max=18));n.tick()
         self.assertTrue(n.stop.last.data)
         n.cb(Message(ranges=[5.86]*10,range_min=.1,range_max=18));n.tick()
         self.assertFalse(n.stop.last.data);self.assertTrue(n.diagnostic.last.data.startswith('CLEAR'))
         self.assertIn('last_stop=NEAR_RETURN',n.diagnostic.last.data)
+
+    def test_single_near_scan_is_not_a_confirmed_stop(self):
+        n=self.node();n.cb(Message(ranges=[.2]*10,range_min=.1,range_max=18));n.tick()
+        self.assertFalse(n.stop.last.data)
+        self.assertIn('PENDING_NEAR_RETURN',n.diagnostic.last.data)
