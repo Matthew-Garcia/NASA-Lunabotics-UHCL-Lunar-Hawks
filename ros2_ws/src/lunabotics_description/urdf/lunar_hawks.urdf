@@ -28,7 +28,7 @@
         <mesh filename="package://lunabotics_description/meshes/wheel.stl" scale=".001 .001 .001" />
       </geometry>
       <material name="wheel_fl_color">
-        <color rgba="0.65 0.68 0.70 1" />
+        <color rgba=".65 .10 .08 1" />
       </material>
     </visual>
     <collision>
@@ -58,7 +58,7 @@
         <mesh filename="package://lunabotics_description/meshes/wheel.stl" scale=".001 .001 .001" />
       </geometry>
       <material name="wheel_rl_color">
-        <color rgba="0.65 0.68 0.70 1" />
+        <color rgba=".65 .10 .08 1" />
       </material>
     </visual>
     <collision>
@@ -88,7 +88,7 @@
         <mesh filename="package://lunabotics_description/meshes/wheel.stl" scale=".001 .001 .001" />
       </geometry>
       <material name="wheel_fr_color">
-        <color rgba="0.65 0.68 0.70 1" />
+        <color rgba=".65 .10 .08 1" />
       </material>
     </visual>
     <collision>
@@ -118,7 +118,7 @@
         <mesh filename="package://lunabotics_description/meshes/wheel.stl" scale=".001 .001 .001" />
       </geometry>
       <material name="wheel_rr_color">
-        <color rgba="0.65 0.68 0.70 1" />
+        <color rgba=".65 .10 .08 1" />
       </material>
     </visual>
     <collision>

@@ -26,7 +26,7 @@ def joint(n,parent,child,xyz='0 0 0',rpy='0 0 0',typ='fixed',axis='0 1 0',limits
 link('base_link','chassis',20,box='.86 .63 .08')
 for side,y in [('l',.375),('r',-.375)]:
  for end,x in [('f',.28),('r',-.28)]:
-  n='wheel_'+end+side; l=link(n,'wheel',2)
+  n='wheel_'+end+side; l=link(n,'wheel',2,color='.65 .10 .08 1')
   c=sub(l,'collision');sub(sub(c,'geometry'),'cylinder',radius=.1524,length=.1)
   joint(n+'_joint','base_link',n,f'{x} {y} -.1076','1.57079632679 0 0','continuous',axis='0 0 -1')
   gz=sub(r,'gazebo',reference=n);txt(gz,'mu1',1);txt(gz,'mu2',1)

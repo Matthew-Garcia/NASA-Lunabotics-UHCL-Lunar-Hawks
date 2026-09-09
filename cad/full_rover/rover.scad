@@ -10,18 +10,8 @@ fin_height=fin_original/2;
 wheel_outer_d=304.8;
 wheel_width=100;
 module beam(p,s){translate(p) cube(s,center=true);}
-module wheel(){
- difference(){
-  union(){
-   difference(){cylinder(r=wheel_outer_d/2-fin_height,h=wheel_width,center=true); cylinder(r=wheel_outer_d/2-fin_height-10,h=102,center=true);}
-   cylinder(r=wheel_outer_d/2-fin_height-3,h=8,center=true);
-   cylinder(r=38,h=45,center=true);
-   for(i=[0:11]) rotate([0,0,i*30]) translate([wheel_outer_d/2-fin_height/2-1,0,0]) cube([fin_height+2,22,96],center=true);
-  }
-  cylinder(d=18,h=110,center=true);
-  for(i=[0:5]) rotate([0,0,i*60]) translate([27.5,0,0]) cylinder(d=6.5,h=110,center=true);
- }
-}
+use <wheel_open_spoke.scad>
+module wheel(){reference_wheel(wheel_outer_d,wheel_width,fin_height);}
 module chassis(){
  for(y=[-300,300]) beam([0,y,0],[860,30,30]);
  for(x=[-415,0,415]) beam([x,0,0],[30,630,30]);
@@ -65,7 +55,7 @@ module enclosure(l,w,h,lid=false){
 }
 module assembly(){
  translate([0,0,260]) color("silver") chassis();
- for(x=[-280,280]) for(y=[-375,375]) translate([x,y,152.4]) rotate([90,0,0]) color("gray") wheel();
+ for(x=[-280,280]) for(y=[-375,375]) translate([x,y,152.4]) rotate([90,0,0]) color("firebrick") wheel();
  translate([-380,0,310]) rotate([0,-bucket_tip,0]) {
   color("silver") bucket();
   translate([0,0,240]) rotate([0,door_open,0]) translate([0,0,-240]) color("gray") gate();
