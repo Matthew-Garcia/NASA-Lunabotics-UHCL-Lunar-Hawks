@@ -12,6 +12,7 @@ The angle is defined in the local tangential/axial construction plane; the cylin
 | `wheel_cover.stl` | 2 | 204 × 204 × 3 | Identical removable side covers |
 | `wheel_assembled.stl` | Do not print as one part | 248 × 248 × 100 | Assembled visual mesh for Gazebo/RViz |
 | `wheel_300mm_lab.stl` | 1 | 300 × 300 × 100 | Open-face lab-printer test article requested for an initial field evaluation |
+| `wheel_300mm_lab_body_for_covers.stl` | 1 | 300 × 300 × 94 | Printable structural body for the covered configuration |
 | `wheel_300mm_lab_cover.stl` | 2 | 256 × 256 × 3 | Removable cover for the 300 mm laboratory wheel |
 | `wheel_300mm_lab_covered.stl` | Do not print as one part | 300 × 300 × 100 | Covered assembly preview/reference mesh |
 
@@ -46,6 +47,7 @@ openscad -o cad/full_rover/wheel.stl -D 'part="wheel"' cad/full_rover/rover.scad
 openscad -o cad/full_rover/wheel_cover.stl -D 'part="wheel_cover"' cad/full_rover/rover.scad
 openscad -o cad/full_rover/wheel_assembled.stl -D 'part="wheel_assembled"' cad/full_rover/rover.scad
 openscad -o cad/full_rover/wheel_300mm_lab.stl cad/full_rover/wheel_300mm_lab.scad
+openscad --export-format binstl -o cad/full_rover/wheel_300mm_lab_body_for_covers.stl -D 'part="body_for_covers"' cad/full_rover/wheel_300mm_lab.scad
 openscad --export-format binstl -o cad/full_rover/wheel_300mm_lab_cover.stl -D 'part="cover"' cad/full_rover/wheel_300mm_lab.scad
 openscad --export-format binstl -o cad/full_rover/wheel_300mm_lab_covered.stl -D 'part="covered"' cad/full_rover/wheel_300mm_lab.scad
 python3 tools/build_description.py
