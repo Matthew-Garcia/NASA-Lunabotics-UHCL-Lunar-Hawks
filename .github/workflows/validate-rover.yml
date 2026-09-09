@@ -19,7 +19,7 @@ jobs:
       - name: Install Gazebo and RViz
         run: |
           apt-get update
-          apt-get install -y --no-install-recommends build-essential cmake xvfb xauth imagemagick python3-opencv ros-humble-gazebo-ros-pkgs ros-humble-gazebo-dev ros-humble-rviz2 ros-humble-cv-bridge ros-humble-joint-state-publisher-gui
+          apt-get install -y --no-install-recommends build-essential cmake xvfb xauth xdotool imagemagick python3-opencv ros-humble-gazebo-ros-pkgs ros-humble-gazebo-dev ros-humble-rviz2 ros-humble-cv-bridge ros-humble-joint-state-publisher-gui
       - name: Build
         shell: bash
         run: |
