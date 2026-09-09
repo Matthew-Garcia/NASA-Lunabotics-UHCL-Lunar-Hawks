@@ -295,6 +295,7 @@ It represents:
 </p>
 
 *Lunar Hawks rover simulation with grouser wheels, a scoop conveyor excavator, and an actuator-driven disposal bucket. Full autonomous excavation and disposal remain under development.*
+
 ---
 
 # Computer vision
