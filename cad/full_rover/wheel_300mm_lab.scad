@@ -6,4 +6,18 @@
 
 use <wheel_open_spoke.scad>
 
-wheel_body(outer_d=300, width=100, fin_height=22);
+part = "open";
+
+// The open test article is 100 mm wide as a single printable body.
+if (part == "open")
+    wheel_body(outer_d=300, width=100, fin_height=22);
+
+// The covered assembly uses a 94 mm body plus two 3 mm covers.
+if (part == "body_for_covers")
+    wheel_body(outer_d=300, width=94, fin_height=22);
+
+if (part == "cover")
+    wheel_cover(outer_d=300, fin_height=22);
+
+if (part == "covered")
+    assembled_reference_wheel(outer_d=300, width=100, fin_height=22);

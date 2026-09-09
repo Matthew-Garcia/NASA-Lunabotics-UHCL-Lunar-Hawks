@@ -12,6 +12,8 @@ The angle is defined in the local tangential/axial construction plane; the cylin
 | `wheel_cover.stl` | 2 | 204 × 204 × 3 | Identical removable side covers |
 | `wheel_assembled.stl` | Do not print as one part | 248 × 248 × 100 | Assembled visual mesh for Gazebo/RViz |
 | `wheel_300mm_lab.stl` | 1 | 300 × 300 × 100 | Open-face lab-printer test article requested for an initial field evaluation |
+| `wheel_300mm_lab_cover.stl` | 2 | 256 × 256 × 3 | Removable cover for the 300 mm laboratory wheel |
+| `wheel_300mm_lab_covered.stl` | Do not print as one part | 300 × 300 × 100 | Covered assembly preview/reference mesh |
 
 Print the body axle-up at 100% scale, centered on the nominal 256 mm plate, and drop it to the bed. The body leaves 4 mm per side; a 3 mm brim has a 254 mm bounding envelope. Print each cover flat in a separate job/plate as needed. Confirm supports beneath the recessed hub/spokes, prime paths, machine exclusion areas, brim and filament/time estimates in the actual slicer profile. No Bambu Studio slice or physical print has been verified here.
 
@@ -44,6 +46,8 @@ openscad -o cad/full_rover/wheel.stl -D 'part="wheel"' cad/full_rover/rover.scad
 openscad -o cad/full_rover/wheel_cover.stl -D 'part="wheel_cover"' cad/full_rover/rover.scad
 openscad -o cad/full_rover/wheel_assembled.stl -D 'part="wheel_assembled"' cad/full_rover/rover.scad
 openscad -o cad/full_rover/wheel_300mm_lab.stl cad/full_rover/wheel_300mm_lab.scad
+openscad --export-format binstl -o cad/full_rover/wheel_300mm_lab_cover.stl -D 'part="cover"' cad/full_rover/wheel_300mm_lab.scad
+openscad --export-format binstl -o cad/full_rover/wheel_300mm_lab_covered.stl -D 'part="covered"' cad/full_rover/wheel_300mm_lab.scad
 python3 tools/build_description.py
 python3 tools/preview_wheel.py
 ```
@@ -51,3 +55,7 @@ python3 tools/preview_wheel.py
 ![Assembled wheel mesh](wheel_preview.png)
 
 ![300 mm open-face laboratory wheel](wheel_300mm_lab_preview.png)
+
+![300 mm covered laboratory wheel](wheel_300mm_lab_covered_preview.png)
+
+![300 mm laboratory wheel cover](wheel_300mm_lab_cover_preview.png)
