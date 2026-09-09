@@ -6,7 +6,7 @@ This branch contains a **reference-derived reconstruction**, not the original co
 
 The supplied ISMCR manuscript specifies four BLDC drive motors, 40 kg reported total mass, 0.87 × 0.75 × 0.75 m reported envelope, and 304.8 mm diameter × 100 mm wide wheels with 12 grousers. The supplied images establish the frame, bucket and conveyor arrangement. They do not define manufacturing geometry. The reconstruction's extended conveyor and wheel track exceed the reported envelope; those positions need reconciliation with the original assembly before claiming dimensional fidelity.
 
-The current reinforced wheel has 12 fins at 30-degree intervals, 22 mm radial projection, 100 mm width and 248 mm outer diameter to fit a nominal 256 mm print bed. It deliberately differs from the manuscript wheel diameter. See `cad/WHEEL.md` for thicknesses, the separate 300 mm lab version and print placement. The 44 mm pre-cut value comes from earlier generated CAD, not a measured original wheel. Bore and bolt pattern are provisional. The generated enclosures have vented lids but lack verified board mounting bosses, connector openings and fastening features. Do not print them as fitted replacement enclosures yet.
+The current reinforced wheel has 12 fins at 30-degree intervals, 22 mm radial projection, 100 mm width and 248 mm outer diameter to fit a nominal 256 mm print bed. It deliberately differs from the manuscript wheel diameter. See `cad/full_rover/WHEEL.md` for thicknesses, the separate 300 mm lab version and print placement. The 44 mm pre-cut value comes from earlier generated CAD, not a measured original wheel. Bore and bolt pattern are provisional. The generated enclosures have vented lids but lack verified board mounting bosses, connector openings and fastening features. Do not print them as fitted replacement enclosures yet.
 
 ## Build on Ubuntu 22.04 / ROS 2 Humble
 
@@ -52,7 +52,7 @@ The mission waits for LiDAR and odometry, rotates to scan, advances with excavat
 
 | Location | Contents |
 | --- | --- |
-| `cad/` | Preserved meshes, parametric OpenSCAD, generated rover parts and wheel previews in one flat directory |
+| `cad/` | Five preserved original project meshes with generated CAD separated into `full_rover/` and `autonomy_rover/` |
 | `ros2_ws/src/lunabotics_description/` | URDF, meshes, Gazebo plugin, arena, RViz and launch files |
 | `ros2_ws/src/lunabotics_autonomy/` | Existing perception with sensor QoS, fail-closed LiDAR and opt-in simulation state machine |
 | `docs/electrical/rev_c/` | KiCad system wiring and machine-readable module connections |

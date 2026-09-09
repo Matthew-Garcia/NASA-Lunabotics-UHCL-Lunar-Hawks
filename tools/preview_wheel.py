@@ -4,7 +4,7 @@ import numpy as np
 import trimesh
 from PIL import Image
 root=Path(__file__).resolve().parents[1]
-m=trimesh.load_mesh(root/'cad/wheel_assembled.stl')
+m=trimesh.load_mesh(root/'cad/full_rover/wheel_assembled.stl')
 m.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2,[1,0,0]))
 view=np.array([.48,-.80,.36]);view/=np.linalg.norm(view)
 right=np.cross([0,0,1],view);right/=np.linalg.norm(right);up=np.cross(view,right)
@@ -25,4 +25,4 @@ for face,normal in zip(m.faces,m.face_normals):
  region[mask]=z[mask]
  color=np.array([185,62,45])*np.clip(.65+.35*np.dot(normal,light),.3,1)
  rgb[lo[1]:hi[1]+1,lo[0]:hi[0]+1][mask]=color.astype(np.uint8)
-Image.fromarray(rgb).save(root/'cad/wheel_preview.png')
+Image.fromarray(rgb).save(root/'cad/full_rover/wheel_preview.png')

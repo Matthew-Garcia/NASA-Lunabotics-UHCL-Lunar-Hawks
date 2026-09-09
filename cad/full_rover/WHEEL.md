@@ -43,13 +43,13 @@ Test the previous and revised wheels at the same load, soil preparation and trav
 ## Regenerate
 
 ```bash
-openscad -o cad/wheel.stl -D 'part="wheel"' cad/rover.scad
-openscad -o cad/wheel_cover.stl -D 'part="wheel_cover"' cad/rover.scad
-openscad -o cad/wheel_assembled.stl -D 'part="wheel_assembled"' cad/rover.scad
-openscad -o cad/wheel_300mm_lab.stl cad/wheel_300mm_lab.scad
-openscad --export-format binstl -o cad/wheel_300mm_lab_body_for_covers.stl -D 'part="body_for_covers"' cad/wheel_300mm_lab.scad
-openscad --export-format binstl -o cad/wheel_300mm_lab_cover.stl -D 'part="cover"' cad/wheel_300mm_lab.scad
-openscad --export-format binstl -o cad/wheel_300mm_lab_covered.stl -D 'part="covered"' cad/wheel_300mm_lab.scad
+openscad -o cad/full_rover/wheel.stl -D 'part="wheel"' cad/full_rover/rover.scad
+openscad -o cad/full_rover/wheel_cover.stl -D 'part="wheel_cover"' cad/full_rover/rover.scad
+openscad -o cad/full_rover/wheel_assembled.stl -D 'part="wheel_assembled"' cad/full_rover/rover.scad
+openscad -o cad/full_rover/wheel_300mm_lab.stl cad/full_rover/wheel_300mm_lab.scad
+openscad --export-format binstl -o cad/full_rover/wheel_300mm_lab_body_for_covers.stl -D 'part="body_for_covers"' cad/full_rover/wheel_300mm_lab.scad
+openscad --export-format binstl -o cad/full_rover/wheel_300mm_lab_cover.stl -D 'part="cover"' cad/full_rover/wheel_300mm_lab.scad
+openscad --export-format binstl -o cad/full_rover/wheel_300mm_lab_covered.stl -D 'part="covered"' cad/full_rover/wheel_300mm_lab.scad
 python3 tools/build_description.py
 python3 tools/preview_wheel.py
 ```

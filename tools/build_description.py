@@ -94,4 +94,4 @@ for name in ('actuator_body.stl','actuator_rod.stl','bucket.stl','chassis.stl',
              'conveyor.stl','esp32_base.stl','esp32_lid.stl','gate.stl',
              'jetson_base.stl','jetson_lid.stl','latch.stl','scoop.stl',
              'wheel.stl','wheel_assembled.stl','wheel_cover.stl'):
-    shutil.copy(ROOT/'cad'/name,P/'meshes'/name)
+    shutil.copy(ROOT/'cad/full_rover'/name,P/'meshes'/name)
