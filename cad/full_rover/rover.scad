@@ -11,7 +11,7 @@ wheel_outer_d=248;
 wheel_width=100;
 module beam(p,s){translate(p) cube(s,center=true);}
 use <wheel_open_spoke.scad>
-module wheel(){reference_wheel(wheel_outer_d,wheel_width,fin_height);}
+module wheel(){assembled_reference_wheel(wheel_outer_d,wheel_width,fin_height);}
 module chassis(){
  for(y=[-300,300]) beam([0,y,0],[860,30,30]);
  for(x=[-415,0,415]) beam([x,0,0],[30,630,30]);
@@ -70,7 +70,9 @@ module assembly(){
 }
 }
 if(part=="assembly") assembly();
-if(part=="wheel") wheel();
+if(part=="wheel") reference_wheel(wheel_outer_d,wheel_width,fin_height);
+if(part=="wheel_assembled") wheel();
+if(part=="wheel_cover") wheel_cover(wheel_outer_d,fin_height);
 if(part=="chassis") chassis();
 if(part=="bucket") bucket();
 if(part=="gate") gate();

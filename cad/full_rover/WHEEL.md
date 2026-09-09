@@ -1,44 +1,47 @@
-# Reinforced 248 mm wheel for a nominal 256 mm build plate
+# Swept-fin wheel with removable side covers
 
-Photo-derived open-spoke wheel, resized for a one-piece print on the user's 256 × 256 × 256 mm printer. This replaces the earlier 304.8 mm full-rover wheel. It retains twelve swept fins at 30-degree intervals and their 22 mm radial projection.
+This revision retains the 248 mm outside diameter, twelve equally spaced fin stations (30 degrees), and reinforced rim/spokes. It changes the nominal sweep from approximately 16.7 degrees to 25 degrees across the face, reduces tangential fin tips from 8 to 4 mm and roots from 14 to 10 mm, and adds removable covers to both sides.
 
-| Feature | Previous wheel | Revised wheel |
-| --- | --- | --- |
-| Outside diameter including fins | 304.8 mm | 248 mm |
-| Axial width | 100 mm | 100 mm |
-| Tread band radial thickness | 3.5 mm | 8 mm |
-| Edge ring radial / axial thickness | 8 / 6 mm | 14 / 12 mm |
-| Spoke tangential / axial section at endpoints | 7 / 5 mm | 16 / 12 mm |
-| Hub diameter / axial length | 76 / 45 mm | 90 / 64 mm |
-| Fin root tangential section | 4 mm | 14 mm |
-| Fin tip tangential section before envelope clipping | 4 mm | 8 mm |
+The angle is defined in the local tangential/axial construction plane; the cylindrical clipping and tapered shoulders change the local edge shape. These are swept fins, not chevrons. They are not guaranteed to eject soil or improve traction, and a single sweep direction can introduce lateral thrust. No comparative BP-1 tests have been performed.
 
-Spokes flare into the rim and hub. The fin envelope is clipped to 248 mm outside diameter; tapered shoulders and curved clipping mean local dimensions vary. Provisional hub interfaces remain an 18 mm bore and six 6.5 mm through-holes on a 55 mm bolt circle. The thicker hub needs longer mounting hardware; confirm real shaft engagement, fasteners and clearance before use.
+## Print and assemble
 
-## Print placement
+| File | Quantity per wheel | Size in mm | Purpose |
+| --- | --- | --- | --- |
+| `wheel.stl` | 1 | 248 × 248 × 94 | Printable structural wheel body |
+| `wheel_cover.stl` | 2 | 204 × 204 × 3 | Identical removable side covers |
+| `wheel_assembled.stl` | Do not print as one part | 248 × 248 × 100 | Assembled visual mesh for Gazebo/RViz |
 
-1. Import `wheel.stl` into Bambu Studio as millimetres at **100% scale**. Do not rescale it to 256 mm.
-2. Keep the axle vertical (STL Z axis), center the wheel at X=128, Y=128 and drop its lowest face onto the plate. Model height is 100 mm.
-3. The model footprint is 248 × 248 mm, leaving 4 mm per side on the nominal plate. A 3 mm exterior brim produces a maximum 254 × 254 mm bounding envelope, leaving 1 mm per side.
-4. Slice with the actual X1C printer/plate profile. Check machine exclusion areas, calibration/prime paths, skirt, supports and brim. Supports beneath the recessed hub/spokes need inspection, and their bases must stay within the plate. Do not disable machine exclusions merely to force the slice to fit.
-5. Preview every layer and check estimated filament/time. This is a substantial print: the CAD solid volume is about 1.63 litres before infill choices and supports. A near-full-bed footprint alone does not establish a successful print.
+Print the body axle-up at 100% scale, centered on the nominal 256 mm plate, and drop it to the bed. The body leaves 4 mm per side; a 3 mm brim has a 254 mm bounding envelope. Print each cover flat in a separate job/plate as needed. Confirm supports beneath the recessed hub/spokes, prime paths, machine exclusion areas, brim and filament/time estimates in the actual slicer profile. No Bambu Studio slice or physical print has been verified here.
 
-The printable wheel is one piece; no segmented joint is needed to fit the nominal volume. The model has been geometrically checked but has **not been sliced or physically printed in this revision**. Larger brims/support bases may need revised placement or a smaller parametric diameter.
+Each cover has six 3.4 mm clearance holes on a 196 mm bolt circle, aligned with 2.5 mm pilot holes about 8 mm deep in the wheel rim. A nominal M3×10 fastener through a 3 mm cover provides about 7 mm engagement. This is a prototype fastening layout, not a qualified plastic thread: confirm pilot size/thread method with the chosen material and a coupon before assembly. Fasteners are not modeled in the assembled STL. Access and mount the wheel hub before installing the covers.
 
-## Simulation integration
+Both covers have a 28 mm center opening. They reduce direct bulk-soil entry through the spoke faces, but they are **not dust seals**: shaft clearance, screws and cover seams can admit fines. A hub-specific collar/gasket is still needed for dust exclusion. Remove covers to inspect and clean; do not assume contamination cannot accumulate.
 
-All four Gazebo/RViz wheel meshes are replaced. Collision radius is 0.124 m and both differential-drive diameter entries are 0.248 m. Axle mounts stay in their existing chassis positions, so the chassis sits 28.4 mm lower than with the previous wheel. CAD assembly placement and Gazebo spawn height account for that change. Recheck excavation travel and terrain clearance; a full mission was not rerun for this revision. Wheel mass/inertia remain estimates, and collision cylinders do not model fin/soil contact.
+## Retained structure and interfaces
 
-## Reproduce and inspect
+- Tread band: 8 mm radial thickness; edge rings: 14 mm radial × 12 mm axial.
+- Spoke endpoint tangential/axial sections: 16 × 12 mm.
+- Hub: 90 mm diameter × 64 mm long.
+- Fin projection: 22 mm radial, retained from the earlier half-height request, not optimized for BP-1.
+- Provisional hub: 18 mm bore and six 6.5 mm mounting holes on a 55 mm bolt circle. Actual shaft/bolt fit and cover clearance require measurement.
+
+The body is 6 mm narrower to accommodate two 3 mm covers while retaining 100 mm assembled width. Mesh validity and nominal print-envelope results are in `wheel_fit_report.json`. Solid CAD volume is not a slicer material estimate.
+
+## Simulation and comparison
+
+All four wheel visuals use `wheel_assembled.stl`. Collision radius (0.124 m), drive diameter (0.248 m), and previous reduced chassis height are retained. Simplified collision cylinders, estimated mass/inertia, and scripted material pickup do not validate fin/soil interaction. Existing runtime screenshots predate this geometry.
+
+Test the previous and revised wheels at the same load, soil preparation and travel speed. Compare drawbar pull, slip, sinkage, drive current, sideways movement and retained soil after straight driving, turns and reversing. Inspect fin roots, rim and cover fasteners. Do not infer either guaranteed failure or guaranteed improvement from appearance alone. Grouser geometry interacts with slip and sinkage, as discussed in [CMU's grouser-spacing study](https://publications.ri.cmu.edu/storage/publications/pub_files/2012/10/SkoniecznyIROS2012.pdf).
+
+## Regenerate
 
 ```bash
 openscad -o cad/full_rover/wheel.stl -D 'part="wheel"' cad/full_rover/rover.scad
+openscad -o cad/full_rover/wheel_cover.stl -D 'part="wheel_cover"' cad/full_rover/rover.scad
+openscad -o cad/full_rover/wheel_assembled.stl -D 'part="wheel_assembled"' cad/full_rover/rover.scad
 python3 tools/build_description.py
 python3 tools/preview_wheel.py
 ```
 
-`wheel_open_spoke.scad` contains the parametric wheel module. `wheel_fit_report.json` records measured STL dimensions and mesh checks. The mesh is watertight, consistently wound and connected. These checks and thicker geometry do not establish a load rating or field-test durability. Material, layer bonding, hub fit, torsion, side loads and impact testing still matter.
-
-The preserved `cad/autonomy_rover/` wheel is the older concept. Previous screenshots and runtime reports in `docs/validation/` predate this change.
-
-![Actual reinforced wheel mesh](wheel_preview.png)
+![Assembled wheel mesh](wheel_preview.png)

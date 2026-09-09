@@ -25,7 +25,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://lunabotics_description/meshes/wheel.stl" scale=".001 .001 .001" />
+        <mesh filename="package://lunabotics_description/meshes/wheel_assembled.stl" scale=".001 .001 .001" />
       </geometry>
       <material name="wheel_fl_color">
         <color rgba=".65 .10 .08 1" />
@@ -55,7 +55,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://lunabotics_description/meshes/wheel.stl" scale=".001 .001 .001" />
+        <mesh filename="package://lunabotics_description/meshes/wheel_assembled.stl" scale=".001 .001 .001" />
       </geometry>
       <material name="wheel_rl_color">
         <color rgba=".65 .10 .08 1" />
@@ -85,7 +85,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://lunabotics_description/meshes/wheel.stl" scale=".001 .001 .001" />
+        <mesh filename="package://lunabotics_description/meshes/wheel_assembled.stl" scale=".001 .001 .001" />
       </geometry>
       <material name="wheel_fr_color">
         <color rgba=".65 .10 .08 1" />
@@ -115,7 +115,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://lunabotics_description/meshes/wheel.stl" scale=".001 .001 .001" />
+        <mesh filename="package://lunabotics_description/meshes/wheel_assembled.stl" scale=".001 .001 .001" />
       </geometry>
       <material name="wheel_rr_color">
         <color rgba=".65 .10 .08 1" />

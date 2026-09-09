@@ -4,7 +4,7 @@ import numpy as np
 import trimesh
 from PIL import Image
 root=Path(__file__).resolve().parents[1]
-m=trimesh.load_mesh(root/'cad/full_rover/wheel.stl')
+m=trimesh.load_mesh(root/'cad/full_rover/wheel_assembled.stl')
 m.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2,[1,0,0]))
 view=np.array([.48,-.80,.36]);view/=np.linalg.norm(view)
 right=np.cross([0,0,1],view);right/=np.linalg.norm(right);up=np.cross(view,right)

@@ -1,21 +1,41 @@
 {
-  "watertight": true,
-  "winding_consistent": true,
-  "components": 1,
-  "size_mm": [
-    248.0,
-    248.0,
-    100.0
-  ],
-  "solid_volume_cm3": 1630.5706815414198,
+  "wheel": {
+    "size_mm": [
+      248.0,
+      248.0,
+      94.0
+    ],
+    "watertight": true,
+    "components": 1,
+    "volume_cm3": 1486.8861739721121
+  },
+  "wheel_cover": {
+    "size_mm": [
+      204.0,
+      204.0,
+      3.0
+    ],
+    "watertight": true,
+    "components": 1,
+    "volume_cm3": 96.0046515020076
+  },
+  "wheel_assembled": {
+    "size_mm": [
+      248.0,
+      248.0,
+      100.0
+    ],
+    "watertight": true,
+    "components": 1,
+    "volume_cm3": 1678.8954779712574
+  },
   "nominal_bed_mm": [
     256,
     256,
     256
   ],
-  "brim_3mm_envelope_mm": [
-    254.0,
-    254.0,
-    100.0
+  "body_with_3mm_brim_xy_mm": [
+    254,
+    254
   ]
 }
