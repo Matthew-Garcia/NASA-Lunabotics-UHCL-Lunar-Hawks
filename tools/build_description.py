@@ -36,7 +36,10 @@ door=link('rear_door','gate',1)
 sub(door.find('visual'),'origin',xyz='0 0 -.24')
 sub(door.find('inertial'),'origin',xyz='0 0 -.12')
 c=sub(door,'collision');sub(c,'origin',xyz='0 0 -.12');sub(sub(c,'geometry'),'box',size='.008 .55 .24')
-joint('rear_door_joint','bucket','rear_door','0 0 .24',typ='revolute',limits=(0,1.6))
+door_joint=joint('rear_door_joint','bucket','rear_door','0 0 .24',typ='revolute',limits=(0,1.6))
+# Low-friction free hinge; generic actuator friction prevented gravity closure.
+door_joint.find('dynamics').set('friction','0.002')
+door_joint.find('dynamics').set('damping','0.08')
 link('electronic_latch','latch',box='.03 .05 .025',m=.1)
 joint('latch_mount','bucket','electronic_latch','-.02 0 .015')
 # Compound collision permits material to sit inside the open bucket.
