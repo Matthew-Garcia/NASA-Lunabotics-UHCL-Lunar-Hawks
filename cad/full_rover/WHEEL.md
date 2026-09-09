@@ -49,3 +49,5 @@ python3 tools/preview_wheel.py
 ```
 
 ![Assembled wheel mesh](wheel_preview.png)
+
+![300 mm open-face laboratory wheel](wheel_300mm_lab_preview.png)
