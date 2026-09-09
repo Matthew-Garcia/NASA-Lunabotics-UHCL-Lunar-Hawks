@@ -1,6 +1,6 @@
 # Full rover simulation revision
 
-This branch contains a **reference-derived reconstruction**, not the original complete mechanical assembly. It is an integration draft. Gazebo runtime, plugin compilation and KiCad ERC have not been verified in the authoring environment.
+This branch contains a **reference-derived reconstruction**, not the original complete mechanical assembly. It is an integration draft. Verification runs on GitHub Actions using ROS 2 Humble / Gazebo 11 and KiCad 9. See `docs/validation/README.md` for measured results and remaining limits.
 
 ## Source and dimensions
 
@@ -82,4 +82,4 @@ New topics: `/excavator/deploy`, `/bucket/latch_release`, `/mechanisms/hold` (Bo
 
 The OpenSCAD assembly supports `bucket_tip`, `door_open`, and `excavator_deploy` in degrees. Zero deployment is lowered; -14.3 degrees illustrates travel. Actuator rods are illustrative, not closed-loop linkage solutions. The older preview predates this correction; inspect the regenerated URDF and OpenSCAD for current mechanisms.
 
-24 host tests pass, including seven mission interlock tests using message stubs. Gazebo compilation/runtime and KiCad ERC still require target-environment verification.
+24 host tests pass, including seven mission interlock tests using message stubs. KiCad 9.0.9 loads and exports the schematic and reports zero ERC errors and warnings. The Gazebo plugin compiles; runtime results are recorded in `docs/validation/README.md`.
