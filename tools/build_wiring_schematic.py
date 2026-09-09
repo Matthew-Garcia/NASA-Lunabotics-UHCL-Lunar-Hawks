@@ -39,9 +39,10 @@ components.extend([
  ('U24','ESP32 FEEDBACK / LATCH GPIO ASSIGNMENTS TBD',[('RELEASE','LATCH_RELEASE'),('CLOSED_INPUT','DOOR_CLOSED'),('ENGAGED_INPUT','LATCH_ENGAGED'),('BUCKET_LOWERED','BUCKET_LOWERED'),('EXCAVATOR_STOWED','EXCAVATOR_STOWED'),('EXCAVATOR_DEPLOYED','EXCAVATOR_DEPLOYED')]),
  ('J24','ACTUATOR ENDPOINT FEEDBACK',[('BUCKET_LOWERED','BUCKET_LOWERED'),('EXCAVATOR_STOWED','EXCAVATOR_STOWED'),('EXCAVATOR_DEPLOYED','EXCAVATOR_DEPLOYED'),('GND','MOTOR_GND')]),
 ])
-# Large sheet keeps every module legible without text overlap.
+components.extend([('J25','LIDAR USB INTERFACE',[('USB','USB_LIDAR')]),('J26','CAMERA USB INTERFACE',[('USB','USB_CAMERA')])])
+# Place connections on the standard 1.27 mm grid.
 for index,(ref,value,pins) in enumerate(components):
- x=48+(index%5)*110;y=38+(index//5)*78;h=max(12,len(pins)*2.54+5);key='Module_'+ref
+ x=50.8+(index%5)*110.49;y=38.1+(index//5)*78.74;h=max(12,len(pins)*2.54+5);key='Module_'+ref
  ps=''
  for j,(name,net) in enumerate(pins):
   py=-j*2.54
@@ -51,8 +52,13 @@ for index,(ref,value,pins) in enumerate(components):
   labels.append(f'(label {q(net)} (at {x-43.18} {wy} 0)(effects(font(size .9 .9))(justify left bottom))(uuid "{uid()}"))')
  lib.append(f'(symbol "{key}" (pin_names(offset .5))(in_bom yes)(on_board no)(property "Reference" "{ref}" (at 0 5 0)(effects(font(size 1 1))))(property "Value" {q(value)} (at 0 2 0)(effects(font(size 1 1))))(symbol "{key}_0_1"(rectangle(start -20.32 2.54)(end 48 {-h})(stroke(width .254)(type default))(fill(type background))))(symbol "{key}_1_1"{ps}))')
  puid=uid()
- instances.append(f'(symbol(lib_id "{key}")(at {x} {y} 0)(unit 1)(in_bom yes)(on_board no)(dnp no)(uuid "{puid}")(property "Reference" "{ref}" (at {x} {y-6} 0)(effects(font(size 1.27 1.27))))(property "Value" {q(value)} (at {x+10} {y-3} 0)(effects(font(size 1 1))))'+''.join(f'(pin "{j+1}"(uuid "{uid()}"))' for j in range(len(pins)))+f'(instances(project "Lunar_Hawks_RevC"(path "/{root_id}"(reference "{ref}")(unit 1)))))')
+ instances.append(f'(symbol(lib_id "LunarHawks:{key}")(at {x} {y} 0)(unit 1)(in_bom yes)(on_board no)(dnp no)(uuid "{puid}")(property "Reference" "{ref}" (at {x} {y-6} 0)(effects(font(size 1.27 1.27))))(property "Value" {q(value)} (at {x+10} {y-3} 0)(effects(font(size 1 1))))'+''.join(f'(pin "{j+1}"(uuid "{uid()}"))' for j in range(len(pins)))+f'(instances(project "Lunar_Hawks_RevC"(path "/{root_id}"(reference "{ref}")(unit 1)))))')
 notes='Engineering system wiring draft. Module ports are logical, NOT connector pin assignments.\nSelect real modules, protection ratings and contactor coil suppression before fabrication.\nIsolated UART: no MOTOR_GND to COMPUTE_GND connection. Verify USB shields do not bypass isolation.\nActuator synchronization, limit switches, driver input thresholds and watchdog remain design gates.'
-out=f'(kicad_sch(version 20250114)(generator "eeschema")(uuid "{root_id}")(paper "User" 594 841)(title_block(title "Lunar Hawks Rev C.1 - Top Hinged Door and Four Actuators")(rev "C.1"))(lib_symbols {"".join(lib)})'+''.join(wires+labels+instances)+f'(text {q(notes)} (at 20 750 0)(effects(font(size 2 2))(justify left top))(uuid "{uid()}")))'
+embedded=[entry.replace('(symbol \"Module_', '(symbol \"LunarHawks:Module_',1) for entry in lib]
+out=f'(kicad_sch(version 20250114)(generator "eeschema")(uuid "{root_id}")(paper "User" 594 841)(title_block(title "Lunar Hawks Rev C.1 - Top Hinged Door and Four Actuators")(rev "C.1"))(lib_symbols {"".join(embedded)})'+''.join(wires+labels+instances)+f'(text {q(notes)} (at 20 750 0)(effects(font(size 2 2))(justify left top))(uuid "{uid()}")))'
 (P/'Lunar_Hawks_RevC.kicad_sch').write_text(out)
 (P/'module_connections.json').write_text(json.dumps(components,indent=2))
+
+(P/'LunarHawks.kicad_sym').write_text('(kicad_symbol_lib(version 20241209)(generator "kicad_symbol_editor")'+''.join(lib)+')')
+(P/'sym-lib-table').write_text('(sym_lib_table(version 7)(lib(name "LunarHawks")(type "KiCad")(uri "${KIPRJMOD}/LunarHawks.kicad_sym")(options "")(descr "Lunar Hawks logical system modules")))')
+(P/'Lunar_Hawks_RevC.kicad_pro').write_text('{}\n')

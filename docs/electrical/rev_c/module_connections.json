@@ -842,5 +842,25 @@
         "MOTOR_GND"
       ]
     ]
+  ],
+  [
+    "J25",
+    "LIDAR USB INTERFACE",
+    [
+      [
+        "USB",
+        "USB_LIDAR"
+      ]
+    ]
+  ],
+  [
+    "J26",
+    "CAMERA USB INTERFACE",
+    [
+      [
+        "USB",
+        "USB_CAMERA"
+      ]
+    ]
   ]
 ]
