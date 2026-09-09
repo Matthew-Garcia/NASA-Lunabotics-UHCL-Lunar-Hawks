@@ -7,7 +7,7 @@ door_open=0; // degrees relative to bucket; top hinge
 excavator_deploy=0; // 0 deployed, -14.3 travel pose
 fin_original=44;
 fin_height=fin_original/2;
-wheel_outer_d=304.8;
+wheel_outer_d=248;
 wheel_width=100;
 module beam(p,s){translate(p) cube(s,center=true);}
 use <wheel_open_spoke.scad>
@@ -54,6 +54,7 @@ module enclosure(l,w,h,lid=false){
  }
 }
 module assembly(){
+ translate([0,0,wheel_outer_d/2-152.4]) union(){
  translate([0,0,260]) color("silver") chassis();
  for(x=[-280,280]) for(y=[-375,375]) translate([x,y,152.4]) rotate([90,0,0]) color("firebrick") wheel();
  translate([-380,0,310]) rotate([0,-bucket_tip,0]) {
@@ -66,6 +67,7 @@ module assembly(){
  for(y=[-290,290]) translate([330,y,410]) rotate([0,25.8,0]) {actuator_body();translate([0,0,150+(excavator_deploy+14.3)*10.49]) actuator_rod();}
  translate([140,-220,310]) enclosure(180,110,40);
  translate([-100,-220,310]) enclosure(260,180,70);
+}
 }
 if(part=="assembly") assembly();
 if(part=="wheel") wheel();

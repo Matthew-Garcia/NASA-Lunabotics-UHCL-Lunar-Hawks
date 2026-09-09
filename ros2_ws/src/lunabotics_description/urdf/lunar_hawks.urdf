@@ -33,7 +33,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="0.1524" length="0.1" />
+        <cylinder radius="0.124" length="0.1" />
       </geometry>
     </collision>
   </link>
@@ -63,7 +63,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="0.1524" length="0.1" />
+        <cylinder radius="0.124" length="0.1" />
       </geometry>
     </collision>
   </link>
@@ -93,7 +93,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="0.1524" length="0.1" />
+        <cylinder radius="0.124" length="0.1" />
       </geometry>
     </collision>
   </link>
@@ -123,7 +123,7 @@
     </visual>
     <collision>
       <geometry>
-        <cylinder radius="0.1524" length="0.1" />
+        <cylinder radius="0.124" length="0.1" />
       </geometry>
     </collision>
   </link>
@@ -847,8 +847,8 @@
       <right_joint>wheel_rr_joint</right_joint>
       <wheel_separation>0.75</wheel_separation>
       <wheel_separation>0.75</wheel_separation>
-      <wheel_diameter>0.3048</wheel_diameter>
-      <wheel_diameter>0.3048</wheel_diameter>
+      <wheel_diameter>0.248</wheel_diameter>
+      <wheel_diameter>0.248</wheel_diameter>
       <max_wheel_torque>40</max_wheel_torque>
       <max_wheel_acceleration>0.5</max_wheel_acceleration>
       <command_topic>cmd_vel</command_topic>
