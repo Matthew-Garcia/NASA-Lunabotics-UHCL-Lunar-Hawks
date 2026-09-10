@@ -25,7 +25,7 @@ This is a team-member-maintained academic/research repository and is **not a NAS
 [Research](docs/publication/README.md) ·
 [Testing](docs/testing/README.md)
 
-<p align="center"><img src="media/UHCL_Lunabotics_Rover.jfif" width="760" alt="UHCL Lunar Hawks physical rover prototype"></p>
+<p align="center"><img src="media/Lunar_Rover.png" width="760" alt="UHCL Lunar Hawks physical rover prototype"></p>
 
 ---
 
