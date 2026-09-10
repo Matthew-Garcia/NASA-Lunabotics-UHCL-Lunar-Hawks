@@ -1,4 +1,4 @@
-<p align="center"><img src="media/UHCL_Lunabotics_Logo.jfif" width="180" alt="UHCL Lunar Hawks team logo"></p>
+<p align="center"><img src="media/Lunar_Rover.png" width="180" alt="UHCL Lunar Hawks team logo"></p>
 
 # NASA Lunabotics · UHCL Lunar Hawks
 
