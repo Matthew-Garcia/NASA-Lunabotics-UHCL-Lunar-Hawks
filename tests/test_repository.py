@@ -33,6 +33,17 @@ class RepositoryTests(unittest.TestCase):
         self.assertIn('/lunabotics/cmd_vel_preview', content)
         self.assertNotIn('/home/uhcl_lunabotics', content)
 
-    def test_three_micropython_files(self):
+    def test_micropython_programs_and_host_test_module(self):
         names = {p.name for p in (ROOT / 'firmware/micropython').glob('*.py')}
-        self.assertEqual(names, {'boot.py', 'test.py', 'main.py'})
+        self.assertEqual(names, {'boot.py', 'test.py', 'main.py', 'dry_run.py'})
+
+    def test_cad_assets_remain_grouped_by_provenance(self):
+        cad = ROOT / 'cad'
+        original = {
+            '12_inch+Linear+actuator.stl', '12mm+Sprocket.stl',
+            'Bucket+#1.stl', 'Door+Frame.stl', 'Hatch+Design.stl',
+        }
+        self.assertEqual({p.name for p in cad.glob('*.stl')}, original)
+        self.assertTrue((cad / 'full_rover/wheel_300mm_lab.stl').is_file())
+        self.assertTrue((cad / 'full_rover/bucket.stl').is_file())
+        self.assertTrue((cad / 'autonomy_rover/goal_post.stl').is_file())

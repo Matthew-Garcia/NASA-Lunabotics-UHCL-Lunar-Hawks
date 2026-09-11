@@ -1,3 +1,5 @@
+> **New simulation review branch:** [Full rover CAD, Gazebo/RViz launch and KiCad Rev C](docs/SIMULATION_REVIEW.md). Reference-derived geometry; runtime and electrical review remain pending.
+
 <p align="center"><img src="media/UHCL_Lunabotics_Logo.jfif" width="180" alt="UHCL Lunar Hawks team logo"></p>
 
 # NASA Lunabotics · UHCL Lunar Hawks
@@ -290,6 +292,8 @@ It represents:
 - LiDAR
 - RGB camera
 
+An integrated Gazebo spawn/bringup launch file is still planned.
+
 <p align="center">
   <img src="media/Lunabotics_Gazebo.png" width="900" alt="UHCL Lunar Hawks rover in Gazebo">
 </p>
@@ -358,24 +362,22 @@ The repository includes both preserved project CAD and new development geometry.
 cad/
 ```
 
-Additional autonomy-development CAD is located at:
+The original supplied meshes remain directly in `cad/`. Generated geometry is separated by purpose:
 
 ```text
-cad/autonomy_rover/
+cad/
+├── original supplied STL files
+├── full_rover/
+│   ├── chassis, bucket and excavator parts
+│   ├── ESP32 and Jetson enclosures
+│   └── 248 mm and 300 mm wheel variants
+└── autonomy_rover/
+    ├── goal_post.scad / .stl
+    ├── grouser_wheel_12_short.scad / .stl
+    └── rover_chassis_simplified.scad / .stl
 ```
 
-Included models:
-
-```text
-goal_post.scad
-goal_post.stl
-
-grouser_wheel_12_short.scad
-grouser_wheel_12_short.stl
-
-rover_chassis_simplified.scad
-rover_chassis_simplified.stl
-```
+The full-rover wheel set and printable cover variants are documented in [`cad/full_rover/WHEEL.md`](cad/full_rover/WHEEL.md).
 
 ## Grouser wheel
 
@@ -490,7 +492,8 @@ Before powering physical motors or actuators:
 | `simulation/worlds/` | Gazebo Lunabotics arena |
 | `hardware/rover_control_pcb/` | Proposed rover-control/interface PCB |
 | `cad/` | Mechanical models and original STL files |
-| `cad/autonomy_rover/` | New rover, wheel, and goal-post development CAD |
+| `cad/full_rover/` | Full rover reconstruction, excavator, bucket, enclosures and wheel variants |
+| `cad/autonomy_rover/` | Earlier simplified autonomy-development CAD and goal-post geometry |
 | `docs/architecture/` | Interfaces, command semantics, and system architecture |
 | `docs/electrical/` | Electrical safety and architecture documentation |
 | `docs/electrical/rev_b/` | Rev-B electrical recommendations and schematic review |
@@ -541,7 +544,7 @@ Before powering physical motors or actuators:
 Repository maintainer · Robotics systems integration · Embedded systems · ROS 2 / autonomy contributor · Co-Author
 
 **Dr. Luong Nguyen, Ph.D.**  
-Research adviser · Lead-author
+Research adviser · Lead-Author
 
 Credit also belongs to the **University of Houston–Clear Lake Lunar Hawks team** and the students who designed, built, tested, and improved the rover platform.
 
@@ -553,7 +556,7 @@ The project has been accepted for presentation at **ISMCR 2026 — International
 
 Research documentation and publication status are maintained under:
 
-[docs/publication/](docs/publication/README.md)
+[Read the author manuscript (Word)](docs/publication/manuscript/Nguyen_Garcia_ISMCR2026_Final_Revision.docx) · [Publication status](docs/publication/README.md)
 
 ---
 

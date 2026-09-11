@@ -13,6 +13,8 @@
     detector/hsv_high: [180, 90, 255]
     lidar/stop_distance_m: 0.65
     lidar/slow_distance_m: 1.25
+    near_confirm_scans: 2
+    safety_fault_delay_s: 0.75
     mission/max_linear_mps: 0.20
     mission/max_angular_rps: 0.45
     mission/excavate_seconds: 12.0

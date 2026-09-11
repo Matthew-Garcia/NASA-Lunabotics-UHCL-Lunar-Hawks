@@ -1,5 +1,5 @@
 """Portable dry-run logic checks. No network, GPIO, or motor outputs."""
-from main import DryRunController, TIMEOUT_MS, mix, parse_command
+from dry_run import DryRunController, TIMEOUT_MS, mix, parse_command
 
 
 def run():

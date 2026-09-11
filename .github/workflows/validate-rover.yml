@@ -1,0 +1,72 @@
+name: Gazebo RViz and KiCad validation
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  simulation:
+    runs-on: ubuntu-22.04
+    container: ros:humble-ros-base-jammy
+    timeout-minutes: 25
+    env:
+      ROS_DOMAIN_ID: '123'
+      LIBGL_ALWAYS_SOFTWARE: '1'
+      QT_X11_NO_MITSHM: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Gazebo and RViz
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends build-essential cmake xvfb xauth xdotool imagemagick python3-opencv ros-humble-gazebo-ros-pkgs ros-humble-gazebo-dev ros-humble-rviz2 ros-humble-cv-bridge ros-humble-joint-state-publisher-gui
+      - name: Build
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          cd ros2_ws
+          colcon build --packages-up-to lunabotics_description --event-handlers console_direct+
+      - name: Runtime sensor and mechanism checks
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          source ros2_ws/install/setup.bash
+          mkdir -p validation
+          xvfb-run -a -s '-screen 0 1440x1000x24' python3 tools/runtime_probe.py
+      - name: Autonomous startup and scan regression
+        env:
+          ROS_DOMAIN_ID: '124'
+          GAZEBO_MASTER_URI: 'http://127.0.0.1:11346'
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          source ros2_ws/install/setup.bash
+          xvfb-run -a -s '-screen 0 1440x1000x24' python3 tools/autonomy_start_probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gazebo-rviz-validation
+          path: |
+            validation/
+            ros2_ws/log/
+  electrical:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install KiCad 9
+        run: |
+          sudo add-apt-repository -y ppa:kicad/kicad-9.0-releases
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends kicad
+      - name: Load export and run ERC
+        run: |
+          mkdir -p validation/schematic
+          kicad-cli version | tee validation/kicad-version.txt
+          kicad-cli sch export svg -o validation/schematic/ docs/electrical/rev_c/Lunar_Hawks_RevC.kicad_sch
+          kicad-cli sch erc --exit-code-violations -o validation/erc.rpt docs/electrical/rev_c/Lunar_Hawks_RevC.kicad_sch
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kicad-validation
+          path: validation/

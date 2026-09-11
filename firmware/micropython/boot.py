@@ -1,6 +1,28 @@
-"""Inert startup for the NEW dry-run prototype; not historical rover firmware.
+import network, time
+from machine import Pin
 
-No GPIO, PWM, Wi-Fi credentials, automatic networking, or motor enable.
-Use external hardware inhibit: leaving pins untouched is NOT a safe-stop circuit.
-"""
-print("Lunar Hawks: dry-run only. No motor outputs or network started.")
+# ====== CRITICAL SAFETY: Force all robot pins LOW at boot =======
+motor_pins = [2, 4, 5, 13, 18, 19, 32, 33, 23, 12, 25, 26]
+
+for p in motor_pins:
+    try:
+        Pin(p, Pin.OUT).value(0)
+    except:
+        pass
+
+print("All motor pins forced LOW at boot for safety.")
+
+# ====== WiFi connection ======
+SSID = "Team23"
+PASSWORD = "uhclgambit"
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, PASSWORD)
+
+while not wlan.isconnected():
+    print("Connecting to Wi-Fi...")
+    time.sleep(1)
+
+print("Connected! IP:", wlan.ifconfig()[0])
+

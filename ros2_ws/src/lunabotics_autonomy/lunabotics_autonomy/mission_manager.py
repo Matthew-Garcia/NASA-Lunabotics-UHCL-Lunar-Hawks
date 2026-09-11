@@ -1,62 +1,150 @@
-#!/usr/bin/env python3
-import time
+"""Opt-in simulation sequence. No physical hardware mission is authorized by this node."""
+import math
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
-from std_msgs.msg import Bool, Float32, Float32MultiArray, Int32
+from nav_msgs.msg import Odometry
+from std_msgs.msg import Bool, Float32, Float32MultiArray, String
 
 class MissionManager(Node):
-    """Compact mission state machine for supervised autonomy experiments.
-
-    ENTER -> SEARCH_REGOLITH -> EXCAVATE -> SEARCH_GOAL -> ALIGN_GOAL -> DUMP -> DONE
-
-    Actuator outputs are std_msgs/Bool so they can be bridged later to the existing
-    ESP32/micro-ROS interfaces without changing the perception code.
-    """
     def __init__(self):
         super().__init__('mission_manager')
-        self.state='ENTER'; self.state_t=time.monotonic(); self.stop=False; self.reg_err=0.0; self.goal=None; self.goal_count=0
+        self.declare_parameter('simulation_mission',False)
+        self.declare_parameter('safety_fault_delay_s',.75)
+        self.fault_reason='';self.ready_since=None;self.last_tick=None
+        self.state='WAIT'; self.since=self.now();self.safe=False;self.scan_t=-100;self.unsafe_since=None
+        self.goal=[];self.goal_t=-100;self.load=0;self.yaw=None;self.odom_t=-100;self.target_yaw=0
         self.cmd=self.create_publisher(Twist,'/cmd_vel',10)
         self.exc=self.create_publisher(Bool,'/excavator/enable',10)
         self.dump=self.create_publisher(Bool,'/bucket/dump',10)
-        self.status=self.create_publisher(Int32,'/mission/state_code',10)
-        self.create_subscription(Bool,'/safety/obstacle_stop',lambda m:setattr(self,'stop',m.data),10)
-        self.create_subscription(Float32,'/vision/regolith/steering_error',lambda m:setattr(self,'reg_err',m.data),10)
+        self.deploy=self.create_publisher(Bool,'/excavator/deploy',10)
+        self.release=self.create_publisher(Bool,'/bucket/latch_release',10)
+        self.hold=self.create_publisher(Bool,'/mechanisms/hold',10)
+        self.mechanisms=[];self.mechanisms_t=-100
+        self.create_subscription(Float32MultiArray,'/simulation/mechanisms',self.mechanism_cb,10)
+        self.status=self.create_publisher(String,'/mission/state',10)
+        self.diagnostic=self.create_publisher(String,'/mission/diagnostic',10)
+        self.create_subscription(Bool,'/safety/obstacle_stop',self.safety,10)
         self.create_subscription(Float32MultiArray,'/vision/goal_posts/target',self.goal_cb,10)
-        self.create_subscription(Int32,'/vision/goal_posts/count',lambda m:setattr(self,'goal_count',m.data),10)
-        self.timer=self.create_timer(0.1,self.tick)
-    def goal_cb(self,m): self.goal=list(m.data)
-    def set_state(self,s): self.state=s; self.state_t=time.monotonic(); self.get_logger().info('STATE -> '+s)
-    def drive(self,v,w):
-        t=Twist(); t.linear.x=0.0 if self.stop and v>0 else float(v); t.angular.z=float(w); self.cmd.publish(t)
-    def boolpub(self,p,val): m=Bool(); m.data=bool(val); p.publish(m)
+        self.create_subscription(Float32,'/simulation/bucket_load',lambda m:setattr(self,'load',m.data),10)
+        self.create_subscription(Odometry,'/odom',self.odometry,10)
+        self.create_timer(.1,self.tick)
+    def now(self):return self.get_clock().now().nanoseconds*1e-9
+    def safety(self,m):
+        now=self.now();new_safe=not m.data
+        if not new_safe and self.unsafe_since is None:self.unsafe_since=now
+        elif new_safe:self.unsafe_since=None
+        self.safe=new_safe;self.scan_t=now
+    def goal_cb(self,m):self.goal=list(m.data);self.goal_t=self.now()
+    def mechanism_cb(self,m):
+        self.mechanisms=list(m.data);self.mechanisms_t=self.now()
+    def odometry(self,m):
+        q=m.pose.pose.orientation;self.yaw=math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z));self.odom_t=self.now()
+    def state_to(self,s):
+        if s != self.state:
+            self.get_logger().info(f'Mission {self.state} -> {s}')
+        self.state=s;self.since=self.now()
+    def fault(self,reason):
+        if self.state == 'FAULT':
+            return  # Preserve the first cause even after inputs recover.
+        self.fault_reason=f'{self.state}: {reason}'
+        self.get_logger().error('MISSION FAULT: '+self.fault_reason)
+        self.state_to('FAULT')
     def tick(self):
-        elapsed=time.monotonic()-self.state_t
-        codes={'ENTER':0,'SEARCH_REGOLITH':1,'EXCAVATE':2,'SEARCH_GOAL':3,'ALIGN_GOAL':4,'DUMP':5,'DONE':6}
-        sm=Int32(); sm.data=codes[self.state]; self.status.publish(sm)
-        if self.state=='ENTER':
-            self.drive(0.18,0.0)
-            if elapsed>6.0: self.set_state('SEARCH_REGOLITH')
-        elif self.state=='SEARCH_REGOLITH':
-            self.drive(0.10,-0.35*self.reg_err)
-            if elapsed>8.0: self.set_state('EXCAVATE')
-        elif self.state=='EXCAVATE':
-            self.boolpub(self.exc,True); self.drive(0.055,0.0)
-            if elapsed>12.0: self.boolpub(self.exc,False); self.set_state('SEARCH_GOAL')
-        elif self.state=='SEARCH_GOAL':
-            self.drive(0.0,0.28)
-            if self.goal_count>=4 and self.goal: self.set_state('ALIGN_GOAL')
-        elif self.state=='ALIGN_GOAL':
-            if not self.goal: self.set_state('SEARCH_GOAL'); return
-            x=self.goal[0]; span=self.goal[2]
-            err=x-0.5
-            self.drive(0.08 if span<0.55 else 0.0,-0.8*err)
-            if abs(err)<0.06 and span>=0.50: self.set_state('DUMP')
+        now=self.now();elapsed=now-self.since;v=w=0.;exc=dump=False
+        enabled=self.get_parameter('simulation_mission').value and self.get_parameter('use_sim_time').value
+        fresh=now>0 and 0<=now-self.scan_t<.5 and 0<=now-self.odom_t<.5 and 0<=now-self.mechanisms_t<.5 and len(self.mechanisms)==4 and all(math.isfinite(x) for x in self.mechanisms)
+        deployed=fresh and self.mechanisms[0]>-.01
+        stowed=fresh and self.mechanisms[0]<-.24
+        lowered=fresh and self.mechanisms[1]<.03
+        latched=fresh and self.mechanisms[3]>.5
+        closed=fresh and abs(self.mechanisms[2])<.04
+        goal=now-self.goal_t<.5 and len(self.goal)==4 and all(math.isfinite(x) for x in self.goal) and self.goal[3]==4
+        clock_jump=self.last_tick is not None and (now<self.last_tick or now-self.last_tick>.5)
+        self.last_tick=now
+        if clock_jump or not (enabled and fresh and self.safe and stowed and lowered and latched):
+            self.ready_since=None
+        issues=[]
+        if now<=0:issues.append('waiting for first nonzero simulation clock')
+        if clock_jump:issues.append('simulation clock discontinuity or callback gap >0.5s')
+        if not enabled:issues.append('simulation_mission and use_sim_time must both be enabled')
+        for name,stamp in [('safety',self.scan_t),('odometry',self.odom_t),('mechanisms',self.mechanisms_t)]:
+            age=now-stamp
+            if age<0 or age>=.5:issues.append(f'{name} feedback stale: {age:.3f}s (limit 0.500s)')
+        if len(self.mechanisms)!=4 or not all(math.isfinite(x) for x in self.mechanisms):
+            issues.append('invalid mechanism feedback: '+str(self.mechanisms))
+        if not self.safe:issues.append('obstacle_stop is true or has not arrived')
+        safety_delay=max(0.,float(self.get_parameter('safety_fault_delay_s').value))
+        unsafe_for=now-self.unsafe_since if not self.safe and self.unsafe_since is not None else 0.
+        hard_fault=not enabled or not fresh or clock_jump
+        if hard_fault or (not self.safe and unsafe_for>=safety_delay):
+            # Stale/invalid inputs fault immediately. A safety stop halts motion
+            # immediately below, but only latches the mission after it persists;
+            # this lets brief Gazebo spawn/self-returns clear without resuming motion.
+            if self.state!='WAIT':self.fault('; '.join(issues) or 'input freshness check failed')
+        elif self.state=='WAIT':
+            if stowed and lowered and latched:
+                if self.ready_since is None:self.ready_since=now
+                elif now-self.ready_since>=1.0:self.state_to('SCAN')
+        elif self.state=='SCAN':
+            w=.25
+            if elapsed>2*math.pi/.25:self.state_to('DEPLOY')
+        elif self.state=='DEPLOY':
+            if deployed:self.state_to('COLLECT')
+            elif elapsed>12:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
+        elif self.state=='COLLECT':
+            exc=True;v=.04
+            if self.load>=4:self.state_to('STOP_CONVEYOR')
+            elif elapsed>90:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
+        elif self.state=='STOP_CONVEYOR':
+            if elapsed>.5:self.state_to('RETRACT')
+        elif self.state=='RETRACT':
+            if stowed:self.state_to('FIND_GOAL')
+            elif elapsed>12:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
+        elif self.state=='FIND_GOAL':
+            w=.2
+            if goal:self.state_to('APPROACH')
+            elif elapsed>40:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
+        elif self.state=='APPROACH':
+            if not goal:self.state_to('FIND_GOAL')
+            else:
+                err=self.goal[0]-.5;w=max(-.25,min(.25,-err*.9));v=.10 if abs(err)<.12 else 0.
+                if self.goal[2]>.66 and abs(err)<.04:
+                    self.target_yaw=self.yaw+math.pi;self.state_to('TURN_REAR')
+        elif self.state=='TURN_REAR':
+            e=math.atan2(math.sin(self.target_yaw-self.yaw),math.cos(self.target_yaw-self.yaw));w=max(-.2,min(.2,e))
+            if abs(e)<.04:self.state_to('UNLATCH')
+            elif elapsed>25:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
+        elif self.state=='UNLATCH':
+            if not latched:self.state_to('DUMP')
+            elif elapsed>4:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
         elif self.state=='DUMP':
-            self.drive(0.0,0.0); self.boolpub(self.dump,True)
-            if elapsed>5.0: self.boolpub(self.dump,False); self.set_state('DONE')
-        else: self.drive(0.0,0.0)
+            dump=True
+            if elapsed>12:self.state_to('LOWER')
+        elif self.state=='LOWER':
+            if lowered:self.state_to('CLOSE_DOOR')
+            elif elapsed>12:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
+        elif self.state=='CLOSE_DOOR':
+            if closed:self.state_to('RELATCH')
+            elif elapsed>10:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
+        elif self.state=='RELATCH':
+            if latched:self.state_to('DONE')
+            elif elapsed>4:self.fault(f'phase timeout after {elapsed:.2f}s; mechanisms={self.mechanisms}')
+        deploy=self.state in ['DEPLOY','COLLECT','STOP_CONVEYOR']
+        release=self.state in ['UNLATCH','DUMP','LOWER','CLOSE_DOOR']
+        exc=exc and self.state=='COLLECT' and deployed and lowered and latched
+        dump=self.state=='DUMP' and stowed and not latched
+        if self.state not in ['SCAN','COLLECT','FIND_GOAL','APPROACH','TURN_REAR']:v=w=0.
+        if self.state in ['FIND_GOAL','APPROACH','TURN_REAR','SCAN'] and not (stowed and lowered and latched):self.fault(f'travel interlock: stowed={stowed}, lowered={lowered}, latched={latched}; mechanisms={self.mechanisms}')
+        if self.state in ['WAIT','FAULT','DONE'] or not fresh or not self.safe:v=w=0.;exc=dump=False
+        detail=self.fault_reason if self.state=='FAULT' else ('; '.join(issues) or ('waiting for 1s of stable clock, fresh inputs and stowed/latched mechanisms' if self.state=='WAIT' else self.state))
+        self.diagnostic.publish(String(data=detail))
+        t=Twist();t.linear.x=float(v);t.angular.z=float(w);self.cmd.publish(t)
+        self.exc.publish(Bool(data=exc));self.dump.publish(Bool(data=dump));self.status.publish(String(data=self.state))
+        self.deploy.publish(Bool(data=deploy));self.release.publish(Bool(data=release))
+        self.hold.publish(Bool(data=self.state in ['WAIT','FAULT','DONE'] or not fresh or not self.safe or not enabled))
 
 def main(args=None):
-    rclpy.init(args=args); n=MissionManager(); rclpy.spin(n); n.destroy_node(); rclpy.shutdown()
-if __name__=='__main__': main()
+    rclpy.init(args=args);n=MissionManager()
+    try:rclpy.spin(n)
+    finally:n.cmd.publish(Twist());n.exc.publish(Bool(data=False));n.hold.publish(Bool(data=True));n.destroy_node();rclpy.shutdown()
