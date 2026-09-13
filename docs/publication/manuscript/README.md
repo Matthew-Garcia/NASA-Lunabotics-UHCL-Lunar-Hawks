@@ -1,3 +1,8 @@
-# Authorized manuscript slot
+# Manuscript Publication PDF
 
-Awaiting the owner-provided authorized manuscript. No fabricated paper PDF or DOI is included. Confirm sharing terms, title, and author order before upload.
+The authorized manuscript publication PDF is included here for reference.
+
+**Design and Implementation of a Proof-of-Concept Excavating Rover Platform for Lunar Regolith Collection and Transportation**
+
+**Authors:** Dr. Luong Nguyen, Ph.D. and Matthew Garcia, B.S.
+**Conference:** ISMCR 2026 — International Symposium on Measurement and Control in Robotics
