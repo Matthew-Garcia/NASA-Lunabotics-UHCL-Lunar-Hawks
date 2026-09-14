@@ -1,6 +1,6 @@
 # Mechanical CAD export
 
-A STEP model of the current Rev A PCB assembly was exported from Flux as:
+A STEP model of the current Rev A PCB assembly
 
 `uhcl-lunar-hawks-rover-control-and-safety-pcb-rev-a.step`
 
