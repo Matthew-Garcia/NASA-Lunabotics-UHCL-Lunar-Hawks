@@ -1,6 +1,6 @@
 # Rev A BOM — preliminary / not for purchasing
 
-The current Flux design contains the selected/provisional parts for the 182-component Rev A schematic and placement. This BOM is still a **development BOM**, not a released procurement list.
+The current design contains the selected/provisional parts for the 182-component Rev A schematic and placement. This BOM is still a **development BOM**, not a released procurement list.
 
 Current major devices include:
 
