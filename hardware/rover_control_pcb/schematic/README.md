@@ -1,22 +1,41 @@
 # Rover Control & Safety PCB — Rev A schematic
 
-Native KiCad schematic work has started in this folder.
+The Rev A electrical design is being developed in Flux with supplemental KiCad architecture/interface sheets retained in this folder.
 
-## Current state
+## Current design
 
-- `rover_control_revA.kicad_sch` — top-level hierarchical architecture sheet.
-- `01_power_protection.kicad_sch` — nominal-24 V control-input, protection and logic-rail interface sheet.
-- `02_mcu_comms.kicad_sch` — proposed ESP32-S3, Jetson serial, USB/debug and CAN interface sheet.
-- `03_safety_estop.kicad_sch` — hardware motion-inhibit / emergency-stop interface sheet.
-- `04_driver_outputs.kicad_sch` — external wheel, conveyor and actuator-driver control interface sheet.
-- `05_sensors_feedback.kicad_sch` — encoder, limit, status, analog-monitoring and optional IMU interface sheet.
+The controller is **ESP32-WROOM**, not ESP32-S3. The current architecture includes:
 
-These files intentionally begin as **native KiCad architecture/interface sheets**. They establish the hierarchy and electrical interface contract without fabricating component-level detail that depends on unresolved rover hardware.
+- protected nominal 24 V / 25.6 V control input and 5 V / 3.3 V rails
+- ESP32-WROOM low-level control
+- dedicated USB-to-UART programming/debug path
+- Jetson Orin NX UART at 115200 baud
+- required Classical CAN / TWAI interface using an external CAN transceiver
+- independent hardware E-stop / `MOTION_ENABLE` gating
+- four external BLDC wheel-driver interfaces
+- excavation/conveyor motor-driver interface
+- four external linear-actuator driver interfaces
+- wheel encoder, limit, fault and diagnostic inputs
+- dedicated energize-to-release dump-latch driver stage
 
-## Not fabrication-ready
+## Files
 
-The schematic is **not ERC-complete, routed, fabricated, or tested**. Exact motor/actuator driver models, control input levels/polarities, battery/transient envelope, connector families/ratings, encoder type, E-stop/contactor implementation, and ESP32-S3 module/pin budget must be confirmed before component selection is frozen.
+- `rover_control_revA.kicad_sch` — earlier top-level architecture sheet
+- `01_power_protection.kicad_sch` — power/protection architecture
+- `02_mcu_comms.kicad_sch` — MCU/comms architecture
+- `03_safety_estop.kicad_sch` — hardware motion-inhibit architecture
+- `04_driver_outputs.kicad_sch` — external driver control interfaces
+- `05_sensors_feedback.kicad_sch` — encoder/limit/status architecture
+- `flux/rover_control_safety_revA.edif.xz` — compressed EDIF export from the current Flux project
 
-High-current traction, conveyor and actuator load current remains off this PCB on separate fused power distribution. The board is intended for low-current control, sensing, communications and hardware-safe driver enables.
+To restore the EDIF export locally:
 
-See `../specifications/requirements.md`, `../specifications/interfaces.md`, and `../specifications/review.md` for the release gates.
+```bash
+xz -d rover_control_safety_revA.edif.xz
+```
+
+## Safety / scope
+
+High-current traction, excavation and linear-actuator load current remains off this PCB on separate fused power distribution. The board provides low-current control, sensing, communications and hardware-safe driver enables.
+
+The design is **not yet fabrication-tested**. Placement is complete, but bulk routing, final electrical calculations, DRC, fabrication and hardware bring-up remain pending.
