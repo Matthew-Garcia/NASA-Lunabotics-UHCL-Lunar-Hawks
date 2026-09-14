@@ -52,14 +52,6 @@ Flux placement is provisionally complete for a **160 × 100 mm** working outline
 
 All 182 placed components passed the checked placement, edge, bounds, and ESP32 RF-keepout criteria. D3 and U4 footprint copper errors were corrected and independently checked. Power-plane work has started, but it still requires reconciliation before routing resumes. A CAN_H routability/width warning also remains to be resolved without a waiver.
 
-### PCB layout and power-plane review
-
-<p align="center">
-  <img src="images/Lunabotics_Layout_PCB.png"
-       width="900"
-       alt="UHCL Lunabotics Rover Control PCB placement and power-plane review">
-</p>
-
 The current layout separates the protected 24 V, 5 V, and 3.3 V power regions while preserving the ESP32 antenna keepout and the approved connector zoning. Signal routing has not yet been completed.
 
 
