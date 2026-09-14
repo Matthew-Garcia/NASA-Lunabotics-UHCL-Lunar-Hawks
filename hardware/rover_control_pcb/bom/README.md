@@ -1,15 +1,23 @@
-# Preliminary functional BOM — not for purchasing
+# Rev A BOM — preliminary / not for purchasing
 
-| Block | Quantity basis | Selection status |
+The current Flux design contains the selected/provisional parts for the 182-component Rev A schematic and placement. This BOM is still a **development BOM**, not a released procurement list.
+
+Current major devices include:
+
+| Function | Current device / family | Status |
 | --- | --- | --- |
-| ESP32-S3 module | 1 proposed | Module/memory variant and GPIO budget TBD |
-| Protected control supply input | 1 | Fuse, TVS, reverse-protection and filter calculations pending |
-| Regulators | 5 V and 3.3 V rails | Ratings/topology depend on load and input envelope |
-| Output buffers and enable logic | Driver-channel dependent | Logic levels, polarity, fail-safe defaults TBD |
-| External-driver connectors | 4 wheels, conveyor, actuator interfaces | Pin count, pitch and ratings TBD |
-| Input conditioning | Limits/encoders/status dependent | Field voltage and signal rate TBD |
-| USB-C/ESD/power arbitration | 1 port proposed | Role and backfeed design TBD |
-| CAN transceiver/isolation | Optional | Architecture and power budget TBD |
-| LEDs/test points | Rails, comms, inhibit | Values and placement TBD |
+| Low-level controller | ESP32-WROOM-32 | Current Rev A controller |
+| Reverse-polarity / ideal-diode control | LM74700-Q1 | Provisional; verify final transient envelope |
+| 5 V buck | LM5164-Q1 | Provisional values; finalize from load/current budget |
+| 3.3 V LDO | TLV76733 | Current design; final thermal/load review pending |
+| USB-UART | FT231XS-R | Programming/debug provision |
+| CAN transceiver | TCAN1042-Q1 family | Required CAN/TWAI interface |
+| Watchdog | TPS3431-Q1 | Hardware safety/watchdog provision |
+| Voltage supervisor | TPS3808 | Reset/supervision provision |
+| I/O expansion | TCA9539-Q1 family | Driver/input expansion |
+| ADC | ADS1115 | Diagnostic/monitoring provision |
+| Dump latch | logic buffer + MOSFET + flyback diode | Final latch voltage/current still required |
 
-No manufacturer part numbers or fabricated stock/price claims. External motor drivers and motor-power distribution are outside the logic-board BOM.
+External BLDC wheel drivers, excavation motor driver, linear-actuator power drivers and high-current fused power distribution are **outside this PCB BOM**.
+
+Manufacturer part numbers and component values remain subject to final electrical validation, routing, availability and fabrication review. Do not purchase the full board from this preliminary list without reviewing the current Flux source and final DRC/release package.
