@@ -3,7 +3,7 @@
 **Status: active Rev A development.** Preliminary schematic and component placement are complete. Bulk routing, final electrical validation, fabrication, and hardware testing are still pending. No manufacturing release or Gerber package is provided yet.
 
 <p align="center">
-  <img src="images/Lunabotics_PCB_Rendered.webp" width="900" alt="UHCL Lunabotics Rover Control and Safety PCB Rev A">
+  <img src="images/Lunabotics_PCB_Rendered.png" width="900" alt="UHCL Lunabotics Rover Control and Safety PCB Rev A">
 </p>
 
 ## Purpose
