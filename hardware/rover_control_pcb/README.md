@@ -3,7 +3,7 @@
 **Status: active Rev A development.** Preliminary schematic and component placement are complete. Bulk routing, final electrical validation, fabrication, and hardware testing are still pending. No manufacturing release or Gerber package is provided yet.
 
 <p align="center">
-  <img src="images/Lunabotics_PCB_Rendered.png" width="900" alt="UHCL Lunabotics Rover Control and Safety PCB Rev A">
+  <img src="images/Lunabotics_PCB_Rendered.webp" width="900" alt="UHCL Lunabotics Rover Control and Safety PCB Rev A">
 </p>
 
 ## Purpose
@@ -54,12 +54,12 @@ All 182 placed components passed the checked placement, edge, bounds, and ESP32 
 
 ## Design files
 
-- [`source/`](source/) — native Flux project source archive and source notes
-- [`schematic/`](schematic/) — Rev A schematic architecture plus Flux EDIF schematic/netlist export
-- [`pcb/`](pcb/) — layout notes and Flux D356 layout/netlist export
-- [`bom/`](bom/) — preliminary Flux BOM export; component selections/MPNs are not yet a released purchasing BOM
+- [`schematic/`](schematic/) — Rev A architecture sheets plus the compressed Flux EDIF export
+- [`pcb/`](pcb/) — layout notes plus the compressed Flux D356 layout/netlist export
+- [`bom/`](bom/) — preliminary BOM information; selections/MPNs are not yet a released purchasing BOM
 - [`images/`](images/) — PCB render and placement/power-plane review images
 - [`cad/`](cad/) — mechanical-CAD export notes and checksum for the current STEP model
+- [`source/`](source/) — native Flux source archive notes and checksum
 - [`specifications/`](specifications/) — requirements, interfaces, and design-review gates
 
 ## Important release note
