@@ -1,70 +1,82 @@
-# Lunar Hawks Rover Control & Safety PCB — Rev A
+# NASA Lunabotics — UHCL Lunar Hawks Low-Level Embedded Control & I/O PCB
 
-**Status: active Rev A development.** Preliminary schematic and component placement are complete. Bulk routing, final electrical validation, fabrication, and hardware testing are still pending. No manufacturing release or Gerber package is provided yet.
+**Native KiCad 9.0 rover-control hardware design** for the University of Houston–Clear Lake Lunar Hawks Lunabotics rover.
 
-<p align="center">
-  <img src="images/Lunabotics_PCB_Rendered.png" width="900" alt="UHCL Lunabotics Rover Control and Safety PCB Rev A">
-</p>
+This board is the rover's **low-level embedded control and I/O PCB**. The NVIDIA Jetson Orin NX remains the high-level ROS 2/autonomy computer, while this PCB handles the hardware-facing embedded layer: ESP32 control, CAN communication, programming/service I/O, safety/inhibit logic, and command interfaces to external wheel and mechanism drivers.
 
-## Purpose
+> **Engineering draft — not released for fabrication or powered operation.** ERC/DRC results establish design-file consistency, not electrical, thermal, RF, EMC, harness, or safety qualification.
 
-This board is the low-level control, safety, communications, and sensor-interface layer for the UHCL Lunar Hawks proof-of-concept excavation rover. The NVIDIA Jetson Orin NX remains the high-level ROS 2 / autonomy computer; the **ESP32-WROOM** on this PCB handles deterministic low-level I/O and interfaces to external motor and actuator drivers.
+## Designed in KiCad 9.0
 
-**High-current wheel, excavation, and linear-actuator load current remains off this PCB.** External driver boards receive fused battery power separately and connect to this PCB only through low-current command, enable, fault/status, and reference signals.
+The controller is designed and maintained **natively in KiCad 9.0**. The current design snapshot was validated with the KiCad 9 toolchain.
 
-## Rev A architecture
+The KiCad project includes the project file, hierarchical schematic sheets, routed PCB layout, local symbol resources, 3D-model support, board artwork, BOM/component records, placement data, layout notes, and electrical validation reports.
 
-- ESP32-WROOM low-level controller
-- Jetson UART at 115200 baud
-- Classical CAN / ESP32 TWAI through an external CAN transceiver
-- Protected nominal 24 V / 25.6 V LiFePO4 control-power input with 5 V and 3.3 V rails
-- Independent hardware E-stop / global `MOTION_ENABLE` safety path
-- Four wheel-driver interfaces: FL, FR, RL, RR
-- Four linear-actuator driver interfaces: `ACT_EXC_1`, `ACT_EXC_2`, `ACT_DUMP_1`, `ACT_DUMP_2`
-- Separate excavation/conveyor motor-driver interface
-- Dedicated energize-to-release dump-latch output stage
-- Wheel encoder, limit-switch, driver-fault, and diagnostic/test-point provisions
-- USB/programming and debug provisions for the ESP32-WROOM
+## Rover control hierarchy
 
-```mermaid
-flowchart LR
-    Jetson["Jetson Orin NX\nROS 2 / autonomy"] <-->|UART 115200| PCB["ESP32-WROOM\nControl & Safety PCB"]
-    CAN["CAN bus"] <-->|CAN_H / CAN_L| PCB
-    ESTOP["Hardware E-stop"] --> PCB
-    Sensors["Encoders / limits / faults"] --> PCB
-    PCB -->|PWM / DIR / ENABLE| Wheel["External BLDC wheel drivers\nFL / FR / RL / RR"]
-    PCB -->|Control| Act["External actuator drivers\nExcavator + dump"]
-    PCB -->|Control| Excavator["External excavation motor driver"]
-    PCB --> Latch["Dump-latch MOSFET stage"]
-    Battery["24/25.6 V fused distribution"] --> Wheel
-    Battery --> Act
-    Battery --> Excavator
+```text
+NVIDIA Jetson Orin NX
+High-level ROS 2 / autonomy / perception / planning
+                 |
+                 | CAN / system interface
+                 v
+LOW-LEVEL EMBEDDED CONTROL & I/O PCB
+ESP32 / safety logic / command generation / hardware I/O
+                 |
+                 v
+External motor drivers / actuators / excavation / disposal
 ```
 
-## Current PCB state
+The board silkscreen identifies the design as:
 
-Flux placement is provisionally complete for a **160 × 100 mm** working outline using a four-layer stack:
+- **NASA LUNABOTICS — UHCL LUNAR HAWKS**
+- **LOW-LEVEL EMBEDDED CONTROL & I/O PCB**
+- **CONTROL SIGNALS ONLY — NO MOTOR POWER**
 
-- L1 — signals and components
-- L2 — continuous ground plane
-- L3 — power distribution
-- L4 — signals and components
+## Current board
 
-All 182 placed components passed the checked placement, edge, bounds, and ESP32 RF-keepout criteria. D3 and U4 footprint copper errors were corrected and independently checked. Power-plane work has started, but it still requires reconciliation before routing resumes. A CAN_H routability/width warning also remains to be resolved without a waiver.
+- 160 × 100 mm working outline
+- four copper layers
+- blue solder mask / white silkscreen configuration
+- ESP32-WROOM-32E-N4 embedded controller module
+- USB-C programming/service interface
+- Classical CAN interface with two parallel connectors and selectable 120 Ω termination
+- four external BLDC wheel-driver command interfaces
+- external linear-actuator / excavation / deployment / disposal command interfaces
+- protected controller power conversion to 5 V and 3.3 V rails
+- watchdog, re-arm, command-enable, and inhibit logic
+- provisional wheel-stop request interfaces
+- system/status indicators and service headers
+- four mounting holes and Lunar Hawks board artwork
+- **motor-current paths remain external to the PCB**
 
-The current layout separates the protected 24 V, 5 V, and 3.3 V power regions while preserving the ESP32 antenna keepout and the approved connector zoning. Signal routing has not yet been completed.
+## Architecture notes
 
+**Embedded controller:** the ESP32 provides the low-level hardware-control layer. Manual BOOT/reset support and the USB programming path are integrated on the board.
 
-## Design files
+**CAN:** the controller-side CAN node includes the transceiver, protection, parallel bus connectors, and selectable termination. The Jetson requires its own appropriate CAN transceiver/adapter; logic-level CAN signals are not connected directly to CAN_H/CAN_L.
 
-- [`schematic/`](schematic/) — Rev A architecture sheets plus the compressed Flux EDIF export
-- [`pcb/`](pcb/) — layout notes plus the compressed Flux D356 layout/netlist export
-- [`bom/`](bom/) — preliminary BOM information; selections/MPNs are not yet a released purchasing BOM
-- [`images/`](images/) — PCB render and placement/power-plane review images
-- [`cad/`](cad/) — mechanical-CAD export notes and checksum for the current STEP model
-- [`source/`](source/) — native Flux source archive notes and checksum
+**Driver interfaces:** motor power is intentionally external. This PCB supplies command/control interfaces to the external wheel and rover-mechanism driver hardware.
+
+**Safety/inhibit layer:** low-voltage interlock, watchdog, arm/re-arm, and command-inhibit functions are included. This PCB is not a safety-rated high-current disconnect; the rover's high-current emergency power interruption remains external.
+
+## KiCad project organization
+
+- [`schematic/`](schematic/) — KiCad schematic architecture and interface sheets
+- [`pcb/`](pcb/) — PCB-layout notes and KiCad layout status
+- [`bom/`](bom/) — preliminary BOM/component information
+- [`images/`](images/) — board-render documentation
+- [`cad/`](cad/) — mechanical/STEP integration notes
+- [`source/`](source/) — source-of-record notes for the native KiCad design
 - [`specifications/`](specifications/) — requirements, interfaces, and design-review gates
 
-## Important release note
+## Remaining engineering review
 
-This is a **development design**, not a fabrication-tested controller. External driver electrical specifications, final load/current budget, connector mechanics, mounting geometry, CAN routing, power widths, final DRC, and hardware bring-up must be completed before ordering boards or connecting rover loads.
+Before fabrication or rover integration, verify regulator current paths and thermal margin, manufacturing stackup, USB behavior, ESP32 RF/antenna clearance, CAN topology/termination/grounding, exact component ordering codes, connector pinouts and voltage compatibility, wheel/excavator STOP/BRAKE/direction behavior, external E-stop integration, mechanical clearances, sensor/end-limit implementation, paired-actuator synchronization, firmware bring-up, and powered hardware testing.
+
+No manufacturing Gerber/drill release is included in this design snapshot.
+
+## Repository location
+
+Branch: `development/full-rover-simulation`  
+Directory: `hardware/rover_control_pcb/`
