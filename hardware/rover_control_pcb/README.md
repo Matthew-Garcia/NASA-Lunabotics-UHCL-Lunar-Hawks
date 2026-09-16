@@ -62,9 +62,29 @@ The board silkscreen identifies the design as:
 
 ## Board previews
 
-![Front logo and routing](PCB_Front_Logo.png)
+### 3D board render
 
-[Existing assembled-board rendering](images/Lunabotics_PCB_Rendered.png)
+<p align="center">
+  <img src="images/board/NASA_LUNABOTICS_PCB.png"
+       width="1000"
+       alt="NASA Lunabotics UHCL Lunar Hawks rover control PCB 3D render">
+</p>
+
+### Top view
+
+<p align="center">
+  <img src="images/board/NASA_LUNABOTICS_TOP.png"
+       width="1000"
+       alt="NASA Lunabotics UHCL Lunar Hawks rover control PCB top view">
+</p>
+
+### Front PCB layout
+
+<p align="center">
+  <img src="images/board/PCB_Front_Logo.png"
+       width="1000"
+       alt="NASA Lunabotics rover control PCB front layout and silkscreen">
+</p>
 
 ## Open the project
 
@@ -94,29 +114,23 @@ KiCad 9.0.4 was run on this board with both logos, all-track-error reporting, sc
 | Schematic ERC errors | 0 |
 | Schematic ERC warnings | 0 |
 
-Reports: [PCB DRC](PCB_Both_Logos_DRC.json), [schematic ERC](Schematic_Both_Logos_ERC.rpt), and [layout status](PCB_Layout_Status.json).
+Reports: [PCB DRC](validation/PCB_Both_Logos_DRC.json), [schematic ERC](validation/Schematic_Both_Logos_ERC.rpt), and [layout status](validation/PCB_Layout_Status.json).
 
 ## BOM and design documentation
 
-- [Grouped draft BOM](BOM.md) and [individual component records](BOM_Components.json). Exact ordering codes still marked TBD must be selected and verified before purchase.
-- [Physical layout notes](PCB_Layout_Notes.md), [power design](Power_Design.md), [driver interfaces](Driver_Interfaces.md), [interlock design](Safety_And_Driver_Design.md), and [wheel-stop interfaces](Wheel_Stop_Design.md).
-- [Hardware requirements](Hardware_Requirements.md) and [detailed design notes](Design_Notes.md).
-- `PCB_Placement.csv` is a draft position inventory of the 201 circuit components and four mounting holes; artwork is excluded. It is not a released assembly pick-and-place file.
+- [Grouped draft BOM](bom/BOM.md) and [individual component records](bom/BOM_Components.json). Exact ordering codes still marked TBD must be selected and verified before purchase.
+- [Physical layout notes](docs/PCB_Layout_Notes.md), [power design](docs/Power_Design.md), [driver interfaces](docs/Driver_Interfaces.md), [interlock design](docs/Safety_And_Driver_Design.md), and [wheel-stop interfaces](docs/Wheel_Stop_Design.md).
+- [Hardware requirements](docs/Hardware_Requirements.md) and [detailed design notes](docs/Design_Notes.md).
+- `data/PCB_Placement.csv` is a draft position inventory of the 201 circuit components and four mounting holes; artwork is excluded. It is not a released assembly pick-and-place file.
 
 ## Remaining engineering review
 
 Review power-converter current paths and thermal behavior, USB routing, ESP32 footprint and antenna clearance, exact component packages, connector pinouts/control levels, mounting dimensions, and the manufacturing stackup. Resolve the external E-stop DC interruption rating and J301 dry-contact permissive wiring; qualify DNP driver links. Sensor/end-limit circuits, paired-actuator synchronization, firmware, and hardware testing remain outstanding. The sensor sheet is a placeholder. No manufacturing Gerber/drill release is included.
 
-## Rear logo
+## Rear PCB artwork
 
-![Rear white silkscreen logo](PCB_Back_Logo.png)
-
-## Replacing the repository directory
-
-Target branch: `development/full-rover-simulation`.
-
-Target directory: `hardware/rover_control_pcb/`.
-
-Extract the ZIP and copy the **contents** of its `rover_control_pcb` folder into that directory. Keep the KiCad project files at this level; avoid nesting another `rover_control_pcb` folder. Remove only the obsolete Flux files within that target directory, after reviewing the Git diff. Commit the replacement as source files, rather than uploading only the ZIP. Git history retains the earlier committed design.
-
-Suggested commit: `Replace Flux rover controller with KiCad draft, BOM, and team logos`.
+<p align="center">
+  <img src="images/board/PCB_Back_Logo.png"
+       width="1000"
+       alt="NASA Lunabotics UHCL Lunar Hawks rear PCB artwork">
+</p>
