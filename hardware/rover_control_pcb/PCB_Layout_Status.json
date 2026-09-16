@@ -1,0 +1,33 @@
+{
+  "revision": "A6 engineering draft with front and back logos",
+  "date": "2026-09-16",
+  "board_size_mm": [
+    160,
+    100
+  ],
+  "copper_layers": 4,
+  "schematic_components": 201,
+  "mounting_holes": 4,
+  "dnp_components": 15,
+  "track_segments": 2318,
+  "vias": 363,
+  "drc_violations": 0,
+  "unconnected_items": 0,
+  "schematic_parity_issues": 0,
+  "fabrication_ready": false,
+  "remaining_review": [
+    "Switcher hot-loop geometry, current paths, thermal performance and power neck-downs",
+    "USB differential geometry and stackup/return-path review",
+    "Exact BOM/footprint/package and connector/harness qualification",
+    "Mechanical enclosure and mounting confirmation",
+    "E-stop DC interruption suitability and J301 dry-contact permissive integration",
+    "Actual motor-driver input behavior and 15 DNP link qualification",
+    "Firmware, sensor/end-limit circuits, paired-actuator synchronization and hardware testing"
+  ],
+  "board_only_logo_footprints": 2,
+  "total_footprints": 207,
+  "latest_drc_report": "PCB_Both_Logos_DRC.json",
+  "latest_erc_report": "Schematic_Both_Logos_ERC.rpt",
+  "erc_errors": 0,
+  "erc_warnings": 0
+}

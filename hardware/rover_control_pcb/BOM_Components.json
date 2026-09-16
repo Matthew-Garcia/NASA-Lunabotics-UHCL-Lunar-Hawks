@@ -1,0 +1,1817 @@
+{
+  "status": "draft_not_for_procurement",
+  "quantity_basis": "one PCB",
+  "populated": 186,
+  "dnp": 15,
+  "components": [
+    {
+      "reference": "C101",
+      "value": "22uF / 63V",
+      "footprint": "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C102",
+      "value": "2.2uF / 100V X7R",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C103",
+      "value": "220nF / 100V X7R",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C104",
+      "value": "1uF / 10V",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C105",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C106",
+      "value": "22uF / 25V X7R",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C107",
+      "value": "22uF / 25V X7R",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C108",
+      "value": "10uF / 16V X7R",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C109",
+      "value": "22uF / 16V X7R",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "D101",
+      "value": "STPS1H100A",
+      "footprint": "Diode_SMD:D_SMA",
+      "population": "Populate",
+      "specified_part_number": "STPS1H100A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "D102",
+      "value": "SMBJ33A",
+      "footprint": "Diode_SMD:D_SMB",
+      "population": "Populate",
+      "specified_part_number": "SMBJ33A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "J101",
+      "value": "FUSED_LOGIC_INPUT",
+      "footprint": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "L101",
+      "value": "22uH / SRN6045TA-220M",
+      "footprint": "Inductor_SMD:L_Bourns_SRN6045TA",
+      "population": "Populate",
+      "specified_part_number": "SRN6045TA-220M",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "L102",
+      "value": "3.3uH / SRN6045TA-3R3Y",
+      "footprint": "Inductor_SMD:L_Bourns_SRN6045TA",
+      "population": "Populate",
+      "specified_part_number": "SRN6045TA-3R3Y",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "R101",
+      "value": "100k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "R102",
+      "value": "24.9k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "R103",
+      "value": "312k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "R104",
+      "value": "100k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "U101",
+      "value": "LMR36510ADDAR",
+      "footprint": "Package_SO:Texas_HTSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.95x4.9mm_Mask2.4x3.1mm_ThermalVias",
+      "population": "Populate",
+      "specified_part_number": "LMR36510ADDAR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "U102",
+      "value": "TPS62160DGKR",
+      "footprint": "Package_SO:MSOP-8_3x3mm_P0.65mm",
+      "population": "Populate",
+      "specified_part_number": "TPS62160DGKR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "01_Power.kicad_sch"
+    },
+    {
+      "reference": "C201",
+      "value": "10uF / 10V X7R",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "C202",
+      "value": "100nF / 10V X7R",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "C203",
+      "value": "1uF / 10V X7R",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "D201",
+      "value": "GREEN",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "D202",
+      "value": "GREEN",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "D203",
+      "value": "GREEN",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "J201",
+      "value": "SERVICE_UART_3V3",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R201",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R202",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R203",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R204",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R205",
+      "value": "470",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R206",
+      "value": "470",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R207",
+      "value": "2.2k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R208",
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "R209",
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "SW201",
+      "value": "RESET",
+      "footprint": "Button_Switch_SMD:SW_SPST_TL3342",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "SW202",
+      "value": "BOOT",
+      "footprint": "Button_Switch_SMD:SW_SPST_TL3342",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "U201",
+      "value": "ESP32-WROOM-32E-N4",
+      "footprint": "RF_Module:ESP32-WROOM-32D",
+      "population": "Populate",
+      "specified_part_number": "ESP32-WROOM-32E-N4",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "02_MCU_Comms.kicad_sch"
+    },
+    {
+      "reference": "C301",
+      "value": "10nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "C302",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "C303",
+      "value": "1uF / 16V X7R",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "C304",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "C305",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "C306",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "C307",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "D301",
+      "value": "GREEN_COMMAND_ENABLE",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "D302",
+      "value": "RED_INHIBITED",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "J301",
+      "value": "SAFETY_AUX_DRY_CONTACT",
+      "footprint": "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "Q301",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R301",
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R302",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R303",
+      "value": "200k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R304",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R305",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R306",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R307",
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R308",
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "R309",
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "U301",
+      "value": "SN74LVC1G17DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "population": "Populate",
+      "specified_part_number": "SN74LVC1G17DBVR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "U302",
+      "value": "SN74LVC1G123DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "population": "Populate",
+      "specified_part_number": "SN74LVC1G123DCUR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "U303",
+      "value": "SN74LVC1G11DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "population": "Populate",
+      "specified_part_number": "SN74LVC1G11DBVR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "U304",
+      "value": "SN74LVC1G74DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "population": "Populate",
+      "specified_part_number": "SN74LVC1G74DCUR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "U305",
+      "value": "SN74LVC1G11DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "population": "Populate",
+      "specified_part_number": "SN74LVC1G11DBVR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "03_Safety.kicad_sch"
+    },
+    {
+      "reference": "C401",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "C402",
+      "value": "4.7uF / 10V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "C403",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "C404",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "C405",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J401",
+      "value": "DUMP_1",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J402",
+      "value": "DUMP_2",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J403",
+      "value": "DEPLOY_1",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J404",
+      "value": "DEPLOY_2",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J405",
+      "value": "EXCAVATOR",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J406",
+      "value": "WHEEL_1",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J407",
+      "value": "WHEEL_2",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J408",
+      "value": "WHEEL_3",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "J409",
+      "value": "WHEEL_4",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "Q401",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "Q402",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "Q403",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "Q404",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R401",
+      "value": "4.7k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R402",
+      "value": "4.7k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R410",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R411",
+      "value": "220R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R412",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R413",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R414",
+      "value": "220R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R415",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R416",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R417",
+      "value": "220R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R418",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R419",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R420",
+      "value": "220R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R421",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R422",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R423",
+      "value": "220R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R424",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R425",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R426",
+      "value": "220R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R427",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R428",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R429",
+      "value": "220R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R430",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R431",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R432",
+      "value": "220R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R433",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R434",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R435",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R436",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R437",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R438",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R439",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R440",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R441",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R442",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R443",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R444",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R445",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R446",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R447",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R448",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R449",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R450",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R451",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R452",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R453",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R454",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R455",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R456",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R457",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R458",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R459",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R460",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R461",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R462",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R463",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R464",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R465",
+      "value": "220R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "R466",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "U401",
+      "value": "PCA9685PW",
+      "footprint": "Package_SO:TSSOP-28_4.4x9.7mm_P0.65mm",
+      "population": "Populate",
+      "specified_part_number": "PCA9685PW",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "U402",
+      "value": "SN74AHCT244PWR",
+      "footprint": "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm",
+      "population": "Populate",
+      "specified_part_number": "SN74AHCT244PWR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "U403",
+      "value": "SN74AHCT244PWR",
+      "footprint": "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm",
+      "population": "Populate",
+      "specified_part_number": "SN74AHCT244PWR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "U404",
+      "value": "SN74AHCT244PWR",
+      "footprint": "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm",
+      "population": "Populate",
+      "specified_part_number": "SN74AHCT244PWR",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "04_Drivers.kicad_sch"
+    },
+    {
+      "reference": "C601",
+      "value": "4.7uF / 10V",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "C602",
+      "value": "100nF / 10V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "C603",
+      "value": "4.7uF / 10V",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "C604",
+      "value": "100nF / 10V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "C605",
+      "value": "4.7uF / 10V",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "C606",
+      "value": "100nF / 10V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "C607",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "J601",
+      "value": "USB4105-GF-A",
+      "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+      "population": "Populate",
+      "specified_part_number": "USB4105-GF-A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "JP601",
+      "value": "UART_SOURCE",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "R601",
+      "value": "5.1k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "R602",
+      "value": "5.1k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "R603",
+      "value": "0R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "R604",
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "R605",
+      "value": "22.1k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "R606",
+      "value": "47.5k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "U601",
+      "value": "CP2102N-A02-GQFN24",
+      "footprint": "Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm",
+      "population": "Populate",
+      "specified_part_number": "CP2102N-A02-GQFN24",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "U602",
+      "value": "USBLC6-2SC6",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "population": "Populate",
+      "specified_part_number": "USBLC6-2SC6",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "06_USB_Programming.kicad_sch"
+    },
+    {
+      "reference": "C701",
+      "value": "100nF / 16V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "C702",
+      "value": "4.7uF / 16V",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "C703",
+      "value": "100nF / 10V",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "D701",
+      "value": "NUP2105LT1G",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "NUP2105LT1G",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "D702",
+      "value": "GREEN / CAN ACT",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "J701",
+      "value": "CAN_TO_JETSON",
+      "footprint": "Connector_Molex:Molex_Micro-Fit_3.0_43650-0300_1x03_P3.00mm_Horizontal",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "J702",
+      "value": "CAN_EXPANSION",
+      "footprint": "Connector_Molex:Molex_Micro-Fit_3.0_43650-0300_1x03_P3.00mm_Horizontal",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "JP701",
+      "value": "END_TERMINATION",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "R701",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "R702",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "R703",
+      "value": "120R 1% / 0.25W",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "R704",
+      "value": "1k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "U701",
+      "value": "TCAN1042HGVDRQ1",
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "population": "Populate",
+      "specified_part_number": "TCAN1042HGVDRQ1",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "07_CAN_Bus.kicad_sch"
+    },
+    {
+      "reference": "J801",
+      "value": "WHEEL_1_STOP",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "J802",
+      "value": "WHEEL_2_STOP",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "J803",
+      "value": "WHEEL_3_STOP",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "J804",
+      "value": "WHEEL_4_STOP",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "Q801",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "Q802",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "Q803",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "Q804",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "Q805",
+      "value": "AO3400A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "population": "Populate",
+      "specified_part_number": "AO3400A",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R801",
+      "value": "680R 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R802",
+      "value": "680R 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R803",
+      "value": "680R 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R804",
+      "value": "680R 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R805",
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R811",
+      "value": "47k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R812",
+      "value": "47k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R813",
+      "value": "47k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R814",
+      "value": "47k 1%",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "Populate",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R821",
+      "value": "0R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R822",
+      "value": "0R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R823",
+      "value": "0R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "R824",
+      "value": "0R DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "population": "DNP",
+      "specified_part_number": "TBD",
+      "procurement_status": "Exact ordering code not selected",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "U801",
+      "value": "LTV-817S-B",
+      "footprint": "Package_DIP:SMDIP-4_W9.53mm",
+      "population": "Populate",
+      "specified_part_number": "LTV-817S-B",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "U802",
+      "value": "LTV-817S-B",
+      "footprint": "Package_DIP:SMDIP-4_W9.53mm",
+      "population": "Populate",
+      "specified_part_number": "LTV-817S-B",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "U803",
+      "value": "LTV-817S-B",
+      "footprint": "Package_DIP:SMDIP-4_W9.53mm",
+      "population": "Populate",
+      "specified_part_number": "LTV-817S-B",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    },
+    {
+      "reference": "U804",
+      "value": "LTV-817S-B",
+      "footprint": "Package_DIP:SMDIP-4_W9.53mm",
+      "population": "Populate",
+      "specified_part_number": "LTV-817S-B",
+      "procurement_status": "Verify ordering code and package",
+      "sheet": "08_Wheel_Stop.kicad_sch"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+PASS: 26 net-connectivity checks; USB VBUS/5V/3V3/GND distinct; UART sources separate; CAN H/L distinct; custom CAN pin assignment matches TI; 201 components.
+PASS: 12 power-connectivity checks; 12 critical nodes distinct; regulator pin assignments and 20 new physical footprint pad mappings verified.
+Divider targets: 5.016 V and 3.296 V. Planning load: 0.643 A on 5 V at 600 mA on 3.3 V plus 150 mA direct 5 V load, assuming 80% second-stage efficiency. Not measured performance.
+PASS: 19 independent command paths, including four wheel MOSFET gate/drain/source routes with no rail tie at DIR connectors; 15 PCA channels and 4 direct PWM mappings; I2C/address/enable wiring; 23 interlock net groups; 106 new footprint pad mappings; custom logic pin tables; 11 wheel/excavator links explicitly DNP.
+No dynamic circuit simulation or physical stopping/EMC validation performed.
+PASS: four driver-powered stop-request channels; common hardware release gate; seven distinct driver/logic/ground rails; 26 additional footprint pad mappings; four STOP links DNP (15 DNP links overall). Physical behavior remains unverified.

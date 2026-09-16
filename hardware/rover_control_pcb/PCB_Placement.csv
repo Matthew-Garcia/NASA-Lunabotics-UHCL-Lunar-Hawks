@@ -1,0 +1,206 @@
+Reference,Value,Footprint,X_mm,Y_mm,Rotation_deg,DNP
+C101,22uF / 63V,Capacitor_THT:CP_Radial_D8.0mm_P3.50mm,50.0,66.0,0.0,False
+C102,2.2uF / 100V X7R,Capacitor_SMD:C_1210_3225Metric,66.0,60.0,90.0,False
+C103,220nF / 100V X7R,Capacitor_SMD:C_0805_2012Metric,67.0,64.0,90.0,False
+C104,1uF / 10V,Capacitor_SMD:C_0805_2012Metric,79.0,65.0,90.0,False
+C105,100nF / 16V,Capacitor_SMD:C_0805_2012Metric,79.0,59.0,90.0,False
+C106,22uF / 25V X7R,Capacitor_SMD:C_1210_3225Metric,90.0,57.0,90.0,False
+C107,22uF / 25V X7R,Capacitor_SMD:C_1210_3225Metric,90.0,62.0,90.0,False
+C108,10uF / 16V X7R,Capacitor_SMD:C_0805_2012Metric,70.0,78.0,90.0,False
+C109,22uF / 16V X7R,Capacitor_SMD:C_1206_3216Metric,86.0,83.0,90.0,False
+C201,10uF / 10V X7R,Capacitor_SMD:C_0805_2012Metric,108.0,49.0,0.0,False
+C202,100nF / 10V X7R,Capacitor_SMD:C_0603_1608Metric,108.0,52.0,0.0,False
+C203,1uF / 10V X7R,Capacitor_SMD:C_0603_1608Metric,108.0,55.0,0.0,False
+C301,10nF / 16V,Capacitor_SMD:C_0603_1608Metric,61.0,102.0,0.0,False
+C302,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,65.0,107.0,90.0,False
+C303,1uF / 16V X7R,Capacitor_SMD:C_0603_1608Metric,77.0,106.0,90.0,False
+C304,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,72.0,111.0,0.0,False
+C305,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,82.0,115.0,0.0,False
+C306,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,92.0,115.0,0.0,False
+C307,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,101.0,116.0,0.0,False
+C401,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,123.0,85.0,90.0,False
+C402,4.7uF / 10V,Capacitor_SMD:C_0603_1608Metric,127.0,85.0,90.0,False
+C403,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,122.0,103.0,90.0,False
+C404,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,146.0,103.0,90.0,False
+C405,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,170.0,103.0,90.0,False
+C601,4.7uF / 10V,Capacitor_SMD:C_0805_2012Metric,90.0,70.0,90.0,False
+C602,100nF / 10V,Capacitor_SMD:C_0603_1608Metric,90.0,72.5,0.0,False
+C603,4.7uF / 10V,Capacitor_SMD:C_0805_2012Metric,95.0,77.0,0.0,False
+C604,100nF / 10V,Capacitor_SMD:C_0603_1608Metric,95.0,80.0,0.0,False
+C605,4.7uF / 10V,Capacitor_SMD:C_0805_2012Metric,99.0,78.0,90.0,False
+C606,100nF / 10V,Capacitor_SMD:C_0603_1608Metric,99.0,74.0,90.0,False
+C607,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,80.0,52.0,0.0,False
+C701,100nF / 16V,Capacitor_SMD:C_0603_1608Metric,150.0,64.0,90.0,False
+C702,4.7uF / 16V,Capacitor_SMD:C_0805_2012Metric,150.0,68.0,0.0,False
+C703,100nF / 10V,Capacitor_SMD:C_0603_1608Metric,162.0,67.0,0.0,False
+D101,STPS1H100A,Diode_SMD:D_SMA,63.0,55.0,0.0,False
+D102,SMBJ33A,Diode_SMD:D_SMB,61.0,62.0,90.0,False
+D201,GREEN,LED_SMD:LED_0603_1608Metric,48.0,76.0,0.0,False
+D202,GREEN,LED_SMD:LED_0603_1608Metric,48.0,80.0,0.0,False
+D203,GREEN,LED_SMD:LED_0603_1608Metric,48.0,84.0,0.0,False
+D301,GREEN_COMMAND_ENABLE,LED_SMD:LED_0603_1608Metric,48.0,92.0,0.0,False
+D302,RED_INHIBITED,LED_SMD:LED_0603_1608Metric,48.0,96.0,0.0,False
+D701,NUP2105LT1G,Package_TO_SOT_SMD:SOT-23,169.0,55.0,0.0,False
+D702,GREEN / CAN ACT,LED_SMD:LED_0603_1608Metric,48.0,88.0,0.0,False
+H1,MountingHole_3.2mm_M3,:MountingHole_3.2mm_M3,44.0,44.0,0.0,False
+H2,MountingHole_3.2mm_M3,:MountingHole_3.2mm_M3,196.0,44.0,0.0,False
+H3,MountingHole_3.2mm_M3,:MountingHole_3.2mm_M3,44.0,136.0,0.0,False
+H4,MountingHole_3.2mm_M3,:MountingHole_3.2mm_M3,196.0,136.0,0.0,False
+J101,FUSED_LOGIC_INPUT,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal",50.0,53.0,0.0,False
+J201,SERVICE_UART_3V3,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,94.0,53.0,0.0,False
+J301,SAFETY_AUX_DRY_CONTACT,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal",48.0,114.0,90.0,False
+J401,DUMP_1,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,54.0,136.0,90.0,False
+J402,DUMP_2,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,70.0,136.0,90.0,False
+J403,DEPLOY_1,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,86.0,136.0,90.0,False
+J404,DEPLOY_2,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,102.0,136.0,90.0,False
+J405,EXCAVATOR,Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical,118.0,136.0,90.0,False
+J406,WHEEL_1,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,136.0,136.0,90.0,False
+J407,WHEEL_2,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,152.0,136.0,90.0,False
+J408,WHEEL_3,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,168.0,136.0,90.0,False
+J409,WHEEL_4,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,184.0,136.0,90.0,False
+J601,USB4105-GF-A,Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal,85.0,43.0,180.0,False
+J701,CAN_TO_JETSON,Connector_Molex:Molex_Micro-Fit_3.0_43650-0300_1x03_P3.00mm_Horizontal,155.0,49.5,0.0,False
+J702,CAN_EXPANSION,Connector_Molex:Molex_Micro-Fit_3.0_43650-0300_1x03_P3.00mm_Horizontal,180.0,49.5,0.0,False
+J801,WHEEL_1_STOP,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,195.0,61.46,0.0,False
+J802,WHEEL_2_STOP,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,195.0,72.46,0.0,False
+J803,WHEEL_3_STOP,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,195.0,83.46,0.0,False
+J804,WHEEL_4_STOP,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,195.0,94.46,0.0,False
+JP601,UART_SOURCE,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,103.0,86.0,90.0,False
+JP701,END_TERMINATION,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,177.0,56.0,90.0,False
+L101,22uH / SRN6045TA-220M,Inductor_SMD:L_Bourns_SRN6045TA,84.0,57.0,0.0,False
+L102,3.3uH / SRN6045TA-3R3Y,Inductor_SMD:L_Bourns_SRN6045TA,82.0,76.0,0.0,False
+Q301,AO3400A,Package_TO_SOT_SMD:SOT-23,109.0,113.0,0.0,False
+Q401,AO3400A,Package_TO_SOT_SMD:SOT-23,137.0,132.0,0.0,False
+Q402,AO3400A,Package_TO_SOT_SMD:SOT-23,153.0,132.0,0.0,False
+Q403,AO3400A,Package_TO_SOT_SMD:SOT-23,169.0,132.0,0.0,False
+Q404,AO3400A,Package_TO_SOT_SMD:SOT-23,185.0,132.0,0.0,False
+Q801,AO3400A,Package_TO_SOT_SMD:SOT-23,187.0,64.0,0.0,False
+Q802,AO3400A,Package_TO_SOT_SMD:SOT-23,187.0,75.0,0.0,False
+Q803,AO3400A,Package_TO_SOT_SMD:SOT-23,187.0,86.0,0.0,False
+Q804,AO3400A,Package_TO_SOT_SMD:SOT-23,187.0,97.0,0.0,False
+Q805,AO3400A,Package_TO_SOT_SMD:SOT-23,159.0,78.0,0.0,False
+R101,100k 1%,Resistor_SMD:R_0603_1608Metric,79.0,69.0,0.0,False
+R102,24.9k 1%,Resistor_SMD:R_0603_1608Metric,75.0,69.0,0.0,False
+R103,312k 1%,Resistor_SMD:R_0603_1608Metric,81.0,83.0,0.0,False
+R104,100k 1%,Resistor_SMD:R_0603_1608Metric,77.0,85.0,0.0,False
+R201,10k,Resistor_SMD:R_0603_1608Metric,104.0,55.0,90.0,False
+R202,10k,Resistor_SMD:R_0603_1608Metric,138.0,65.0,90.0,False
+R203,10k,Resistor_SMD:R_0603_1608Metric,129.0,71.0,0.0,False
+R204,10k,Resistor_SMD:R_0603_1608Metric,110.0,65.0,90.0,False
+R205,470,Resistor_SMD:R_0603_1608Metric,140.0,54.0,0.0,False
+R206,470,Resistor_SMD:R_0603_1608Metric,140.0,57.0,0.0,False
+R207,2.2k,Resistor_SMD:R_0603_1608Metric,53.0,76.0,0.0,False
+R208,1k,Resistor_SMD:R_0603_1608Metric,53.0,80.0,0.0,False
+R209,1k,Resistor_SMD:R_0603_1608Metric,53.0,84.0,0.0,False
+R301,1k,Resistor_SMD:R_0603_1608Metric,55.0,108.0,0.0,False
+R302,10k,Resistor_SMD:R_0603_1608Metric,57.0,103.0,90.0,False
+R303,200k 1%,Resistor_SMD:R_0603_1608Metric,76.0,102.0,0.0,False
+R304,10k,Resistor_SMD:R_0603_1608Metric,67.0,102.0,0.0,False
+R305,10k,Resistor_SMD:R_0603_1608Metric,88.0,105.0,0.0,False
+R306,10k,Resistor_SMD:R_0603_1608Metric,114.0,112.0,90.0,False
+R307,100k,Resistor_SMD:R_0603_1608Metric,108.0,108.0,0.0,False
+R308,1k,Resistor_SMD:R_0603_1608Metric,53.0,92.0,0.0,False
+R309,1k,Resistor_SMD:R_0603_1608Metric,53.0,96.0,0.0,False
+R401,4.7k,Resistor_SMD:R_0603_1608Metric,111.0,82.0,90.0,False
+R402,4.7k,Resistor_SMD:R_0603_1608Metric,115.0,82.0,90.0,False
+R410,10k,Resistor_SMD:R_0603_1608Metric,119.0,119.0,0.0,False
+R411,220R,Resistor_SMD:R_0603_1608Metric,119.0,120.8,0.0,False
+R412,10k,Resistor_SMD:R_0603_1608Metric,119.0,122.6,0.0,False
+R413,10k,Resistor_SMD:R_0603_1608Metric,124.0,119.0,0.0,False
+R414,220R,Resistor_SMD:R_0603_1608Metric,124.0,120.8,0.0,False
+R415,10k,Resistor_SMD:R_0603_1608Metric,124.0,122.6,0.0,False
+R416,10k,Resistor_SMD:R_0603_1608Metric,129.0,119.0,0.0,False
+R417,220R,Resistor_SMD:R_0603_1608Metric,129.0,120.8,0.0,False
+R418,10k,Resistor_SMD:R_0603_1608Metric,129.0,122.6,0.0,False
+R419,10k,Resistor_SMD:R_0603_1608Metric,134.0,119.0,0.0,False
+R420,220R,Resistor_SMD:R_0603_1608Metric,134.0,120.8,0.0,False
+R421,10k,Resistor_SMD:R_0603_1608Metric,134.0,122.6,0.0,False
+R422,10k,Resistor_SMD:R_0603_1608Metric,119.0,125.0,0.0,False
+R423,220R,Resistor_SMD:R_0603_1608Metric,119.0,126.8,0.0,False
+R424,10k,Resistor_SMD:R_0603_1608Metric,119.0,128.6,0.0,False
+R425,10k,Resistor_SMD:R_0603_1608Metric,124.0,125.0,0.0,False
+R426,220R,Resistor_SMD:R_0603_1608Metric,124.0,126.8,0.0,False
+R427,10k,Resistor_SMD:R_0603_1608Metric,124.0,128.6,0.0,False
+R428,10k,Resistor_SMD:R_0603_1608Metric,129.0,125.0,0.0,False
+R429,220R,Resistor_SMD:R_0603_1608Metric,129.0,126.8,0.0,False
+R430,10k,Resistor_SMD:R_0603_1608Metric,129.0,128.6,0.0,False
+R431,10k,Resistor_SMD:R_0603_1608Metric,134.0,125.0,0.0,False
+R432,220R,Resistor_SMD:R_0603_1608Metric,134.0,126.8,0.0,False
+R433,10k,Resistor_SMD:R_0603_1608Metric,134.0,128.6,0.0,False
+R434,10k,Resistor_SMD:R_0603_1608Metric,143.0,119.0,0.0,False
+R435,220R DNP,Resistor_SMD:R_0603_1608Metric,143.0,120.8,0.0,True
+R436,10k,Resistor_SMD:R_0603_1608Metric,143.0,122.6,0.0,False
+R437,10k,Resistor_SMD:R_0603_1608Metric,148.0,119.0,0.0,False
+R438,220R DNP,Resistor_SMD:R_0603_1608Metric,148.0,120.8,0.0,True
+R439,10k,Resistor_SMD:R_0603_1608Metric,148.0,122.6,0.0,False
+R440,10k,Resistor_SMD:R_0603_1608Metric,153.0,119.0,0.0,False
+R441,220R DNP,Resistor_SMD:R_0603_1608Metric,153.0,120.8,0.0,True
+R442,10k,Resistor_SMD:R_0603_1608Metric,153.0,122.6,0.0,False
+R443,10k,Resistor_SMD:R_0603_1608Metric,158.0,119.0,0.0,False
+R444,220R DNP,Resistor_SMD:R_0603_1608Metric,158.0,120.8,0.0,True
+R445,10k,Resistor_SMD:R_0603_1608Metric,158.0,122.6,0.0,False
+R446,10k,Resistor_SMD:R_0603_1608Metric,143.0,125.0,0.0,False
+R447,220R DNP,Resistor_SMD:R_0603_1608Metric,143.0,126.8,0.0,True
+R448,10k,Resistor_SMD:R_0603_1608Metric,143.0,128.6,0.0,False
+R449,10k,Resistor_SMD:R_0603_1608Metric,148.0,125.0,0.0,False
+R450,220R DNP,Resistor_SMD:R_0603_1608Metric,148.0,126.8,0.0,True
+R451,10k,Resistor_SMD:R_0603_1608Metric,148.0,128.6,0.0,False
+R452,10k,Resistor_SMD:R_0603_1608Metric,153.0,125.0,0.0,False
+R453,220R DNP,Resistor_SMD:R_0603_1608Metric,153.0,126.8,0.0,True
+R454,10k,Resistor_SMD:R_0603_1608Metric,153.0,128.6,0.0,False
+R455,10k,Resistor_SMD:R_0603_1608Metric,158.0,125.0,0.0,False
+R456,220R DNP,Resistor_SMD:R_0603_1608Metric,158.0,126.8,0.0,True
+R457,10k,Resistor_SMD:R_0603_1608Metric,158.0,128.6,0.0,False
+R458,10k,Resistor_SMD:R_0603_1608Metric,167.0,119.0,0.0,False
+R459,220R DNP,Resistor_SMD:R_0603_1608Metric,167.0,120.8,0.0,True
+R460,10k,Resistor_SMD:R_0603_1608Metric,167.0,122.6,0.0,False
+R461,10k,Resistor_SMD:R_0603_1608Metric,172.0,119.0,0.0,False
+R462,220R DNP,Resistor_SMD:R_0603_1608Metric,172.0,120.8,0.0,True
+R463,10k,Resistor_SMD:R_0603_1608Metric,172.0,122.6,0.0,False
+R464,10k,Resistor_SMD:R_0603_1608Metric,177.0,119.0,0.0,False
+R465,220R DNP,Resistor_SMD:R_0603_1608Metric,177.0,120.8,0.0,True
+R466,10k,Resistor_SMD:R_0603_1608Metric,177.0,122.6,0.0,False
+R601,5.1k 1%,Resistor_SMD:R_0603_1608Metric,78.0,48.0,90.0,False
+R602,5.1k 1%,Resistor_SMD:R_0603_1608Metric,92.0,49.0,90.0,False
+R603,0R,Resistor_SMD:R_0603_1608Metric,89.0,66.0,0.0,False
+R604,1k,Resistor_SMD:R_0603_1608Metric,98.0,66.0,0.0,False
+R605,22.1k 1%,Resistor_SMD:R_0603_1608Metric,90.0,75.0,90.0,False
+R606,47.5k 1%,Resistor_SMD:R_0603_1608Metric,92.0,83.0,0.0,False
+R701,10k,Resistor_SMD:R_0603_1608Metric,150.0,60.0,90.0,False
+R702,10k,Resistor_SMD:R_0603_1608Metric,160.0,58.0,0.0,False
+R703,120R 1% / 0.25W,Resistor_SMD:R_1206_3216Metric,169.0,59.0,0.0,False
+R704,1k,Resistor_SMD:R_0603_1608Metric,53.0,88.0,0.0,False
+R801,680R 1%,Resistor_SMD:R_0603_1608Metric,168.0,64.0,90.0,False
+R802,680R 1%,Resistor_SMD:R_0603_1608Metric,168.0,75.0,90.0,False
+R803,680R 1%,Resistor_SMD:R_0603_1608Metric,168.0,86.0,90.0,False
+R804,680R 1%,Resistor_SMD:R_0603_1608Metric,168.0,97.0,90.0,False
+R805,100k,Resistor_SMD:R_0603_1608Metric,154.0,78.0,90.0,False
+R811,47k 1%,Resistor_SMD:R_0603_1608Metric,185.0,60.0,0.0,False
+R812,47k 1%,Resistor_SMD:R_0603_1608Metric,185.0,71.0,0.0,False
+R813,47k 1%,Resistor_SMD:R_0603_1608Metric,185.0,82.0,0.0,False
+R814,47k 1%,Resistor_SMD:R_0603_1608Metric,185.0,93.0,0.0,False
+R821,0R DNP,Resistor_SMD:R_0603_1608Metric,191.0,67.0,90.0,True
+R822,0R DNP,Resistor_SMD:R_0603_1608Metric,191.0,78.0,90.0,True
+R823,0R DNP,Resistor_SMD:R_0603_1608Metric,191.0,89.0,90.0,True
+R824,0R DNP,Resistor_SMD:R_0603_1608Metric,191.0,100.0,90.0,True
+SW201,RESET,Button_Switch_SMD:SW_SPST_TL3342,105.0,70.0,0.0,False
+SW202,BOOT,Button_Switch_SMD:SW_SPST_TL3342,114.0,75.0,0.0,False
+U101,LMR36510ADDAR,Package_SO:Texas_HTSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.95x4.9mm_Mask2.4x3.1mm_ThermalVias,73.0,62.0,0.0,False
+U102,TPS62160DGKR,Package_SO:MSOP-8_3x3mm_P0.65mm,75.0,80.0,0.0,False
+U201,ESP32-WROOM-32E-N4,RF_Module:ESP32-WROOM-32D,122.0,57.0,0.0,False
+U301,SN74LVC1G17DBVR,Package_TO_SOT_SMD:SOT-23-5,61.0,107.0,0.0,False
+U302,SN74LVC1G123DCUR,Package_SO:VSSOP-8_2.3x2mm_P0.5mm,72.0,106.0,0.0,False
+U303,SN74LVC1G11DBVR,Package_TO_SOT_SMD:SOT-23-6,82.0,110.0,0.0,False
+U304,SN74LVC1G74DCUR,Package_SO:VSSOP-8_2.3x2mm_P0.5mm,92.0,110.0,0.0,False
+U305,SN74LVC1G11DBVR,Package_TO_SOT_SMD:SOT-23-6,101.0,111.0,0.0,False
+U401,PCA9685PW,Package_SO:TSSOP-28_4.4x9.7mm_P0.65mm,117.0,90.0,0.0,False
+U402,SN74AHCT244PWR,Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm,127.0,107.0,0.0,False
+U403,SN74AHCT244PWR,Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm,151.0,107.0,0.0,False
+U404,SN74AHCT244PWR,Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm,175.0,107.0,0.0,False
+U601,CP2102N-A02-GQFN24,Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm,95.0,71.0,0.0,False
+U602,USBLC6-2SC6,Package_TO_SOT_SMD:SOT-23-6,85.0,50.0,90.0,False
+U701,TCAN1042HGVDRQ1,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,156.0,63.0,0.0,False
+U801,LTV-817S-B,Package_DIP:SMDIP-4_W9.53mm,176.0,64.0,0.0,False
+U802,LTV-817S-B,Package_DIP:SMDIP-4_W9.53mm,176.0,75.0,0.0,False
+U803,LTV-817S-B,Package_DIP:SMDIP-4_W9.53mm,176.0,86.0,0.0,False
+U804,LTV-817S-B,Package_DIP:SMDIP-4_W9.53mm,176.0,97.0,0.0,False
