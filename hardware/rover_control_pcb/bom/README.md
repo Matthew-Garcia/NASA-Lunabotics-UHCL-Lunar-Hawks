@@ -1,23 +1,13 @@
-# Rev A BOM — preliminary / not for purchasing
+# KiCad 9.0 BOM
 
-The current design contains the selected/provisional parts for the 182-component Rev A schematic and placement. This BOM is still a **development BOM**, not a released procurement list.
+The current bill of materials for the Lunar Hawks low-level embedded control & I/O PCB is maintained from the native KiCad 9.0 design.
 
-Current major devices include:
+Use the current project-level files:
 
-| Function | Current device / family | Status |
-| --- | --- | --- |
-| Low-level controller | ESP32-WROOM-32 | Current Rev A controller |
-| Reverse-polarity / ideal-diode control | LM74700-Q1 | Provisional; verify final transient envelope |
-| 5 V buck | LM5164-Q1 | Provisional values; finalize from load/current budget |
-| 3.3 V LDO | TLV76733 | Current design; final thermal/load review pending |
-| USB-UART | FT231XS-R | Programming/debug provision |
-| CAN transceiver | TCAN1042-Q1 family | Required CAN/TWAI interface |
-| Watchdog | TPS3431-Q1 | Hardware safety/watchdog provision |
-| Voltage supervisor | TPS3808 | Reset/supervision provision |
-| I/O expansion | TCA9539-Q1 family | Driver/input expansion |
-| ADC | ADS1115 | Diagnostic/monitoring provision |
-| Dump latch | logic buffer + MOSFET + flyback diode | Final latch voltage/current still required |
+- [`../BOM.md`](../BOM.md) — grouped engineering BOM
+- `../BOM_Components.json` — machine-readable component records
+- `../PCB_Placement.csv` — draft component position inventory
 
-External BLDC wheel drivers, excavation motor driver, linear-actuator power drivers and high-current fused power distribution are **outside this PCB BOM**.
+Current design snapshot: **201 schematic components, 186 populated, 15 DNP**. External BLDC wheel drivers, actuator power drivers, excavation-driver hardware, batteries, fused high-current distribution, and other rover equipment are outside the PCB assembly BOM.
 
-Manufacturer part numbers and component values remain subject to final electrical validation, routing, availability and fabrication review. Do not purchase the full board from this preliminary list without reviewing the current Flux source and final DRC/release package.
+This remains an engineering draft. Exact ordering codes, package selections, ratings, connector mating hardware, assembly consumables, and DNP decisions must be reviewed before procurement or fabrication.
