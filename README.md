@@ -82,7 +82,7 @@ Physical test videos, measured results, software revisions, and dated validation
 | Gazebo simulation | Lunabotics arena world and rover model | Source added; integrated launch and runtime validation still required |
 | Mechanical CAD | Original rover STLs plus autonomy-development CAD | New models are reference/development geometry |
 | Rover wheel | 304.8 mm × 100 mm conceptual wheel with 12 grousers | Parametric recreation; hub dimensions must be verified before fabrication |
-| Rover control PCB | Requirements, interfaces, BOM, and review material | Concept / design-review stage |
+| Rover control PCB | Routed 4-layer KiCad 9 ESP32/CAN design with USB programming and safety/inhibit logic | ERC/DRC clean; pending fabrication and bring-up |
 | Electrical Rev B | Architecture recommendations and schematic review | Engineering-development documentation |
 | Research | Manuscript/project documentation | Research publication workflow ongoing |
 
