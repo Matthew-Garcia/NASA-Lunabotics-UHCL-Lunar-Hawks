@@ -10,6 +10,4 @@ Migrated from https://github.com/Matthew-Garcia/uhcl-lunar-hawks-lunabotics at c
 | assets/ | media/ | None |
 | docs/software PDF | docs/legacy/ | None; historical document may contain stale instructions |
 
-MicroPython, host tests, PCB concept documents, landing page, and current documentation are newly authored, AI-assisted additions, not recovered original code or evidence of physical tests.
-
 The original MIT license is preserved. Third-party assets retain their applicable rights. Team logos, vendor imagery, adapted CAD, and future manuscripts are not automatically relicensed by their presence here. Confirm authorship and redistribution terms before broader reuse. No NASA or university endorsement is implied.
