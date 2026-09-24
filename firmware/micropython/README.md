@@ -1,6 +1,6 @@
 # MicroPython: three-file dry-run prototype
 
-**New AI-assisted examples, not recovered historical rover firmware. No GPIO/PWM output implementation is included.** micro-ROS and MicroPython are alternative MCU firmware images.
+**New examples, not recovered historical rover firmware. No GPIO/PWM output implementation is included.** micro-ROS and MicroPython are alternative MCU firmware images.
 
 | File | Purpose |
 | --- | --- |
