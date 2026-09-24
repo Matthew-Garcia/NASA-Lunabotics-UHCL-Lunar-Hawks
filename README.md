@@ -595,5 +595,3 @@ See:
 The original MIT license is retained.
 
 See [NOTICE](NOTICE.md) for source revision, provenance, and rights information.
-
-Some newer example code and engineering-development artifacts were created with AI-assisted development and should be independently reviewed, tested, and validated before use on physical hardware.
